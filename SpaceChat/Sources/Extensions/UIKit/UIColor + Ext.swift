@@ -46,4 +46,7 @@ extension UIColor {
         return #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1)
     }
 
+    static func denyButtonColor() -> UIColor {
+        return #colorLiteral(red: 0.8352941176, green: 0.2, blue: 0.2, alpha: 1)
+    }
 }
