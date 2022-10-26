@@ -35,6 +35,7 @@ class MainTabBarController: UITabBarController {
 
     private func generateNavigationController(rootVC: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navigationVC = UINavigationController(rootViewController: rootVC)
+        navigationController?.navigationBar.isTranslucent = true
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
         return navigationVC

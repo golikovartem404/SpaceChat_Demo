@@ -28,6 +28,9 @@
 		9C318FF129093E0B00F8589A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF029093E0B00F8589A /* MainTabBarController.swift */; };
 		9C318FF529093E6500F8589A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF429093E6500F8589A /* UsersViewController.swift */; };
 		9C318FF729093E7000F8589A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF629093E7000F8589A /* ChatListViewController.swift */; };
+		9C318FF929095A9900F8589A /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C318FF829095A9900F8589A /* waitingChats.json */; };
+		9C318FFB29095AA100F8589A /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C318FFA29095AA100F8589A /* activeChats.json */; };
+		9C318FFD29095ABB00F8589A /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,9 @@
 		9C318FF029093E0B00F8589A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9C318FF429093E6500F8589A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		9C318FF629093E7000F8589A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		9C318FF829095A9900F8589A /* waitingChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = waitingChats.json; path = "../../../../../../Downloads/15. урок/IChat/Extensions/UIKIt/waitingChats.json"; sourceTree = "<group>"; };
+		9C318FFA29095AA100F8589A /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activeChats.json; path = "../../../../../../Downloads/15. урок/IChat/Extensions/UIKIt/activeChats.json"; sourceTree = "<group>"; };
+		9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle-Decodable.swift"; path = "../../../../../../../../Downloads/15. урок/IChat/Extensions/Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +132,8 @@
 		9C1E4F8F290869A5001BED50 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9C318FFA29095AA100F8589A /* activeChats.json */,
+				9C318FF829095A9900F8589A /* waitingChats.json */,
 				9C185F452908804500C7296B /* CustomViews */,
 				9C185F442908803600C7296B /* ViewControllers */,
 				9C1E4F9229086B7F001BED50 /* Extensions */,
@@ -170,6 +178,7 @@
 				9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */,
 				9C185F4229087EA700C7296B /* UIStackView + Ext.swift */,
 				9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */,
+				9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -188,8 +197,8 @@
 		9C318FEF29093DF900F8589A /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				9C318FF429093E6500F8589A /* UsersViewController.swift */,
 				9C318FF629093E7000F8589A /* ChatListViewController.swift */,
+				9C318FF429093E6500F8589A /* UsersViewController.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -258,8 +267,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C318FF929095A9900F8589A /* waitingChats.json in Resources */,
 				9C1E4F8729086622001BED50 /* LaunchScreen.storyboard in Resources */,
 				9C1E4F8429086622001BED50 /* Assets.xcassets in Resources */,
+				9C318FFB29095AA100F8589A /* activeChats.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +288,7 @@
 				9C1E4F9A2908700E001BED50 /* UILabel + Ext.swift in Sources */,
 				9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */,
 				9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */,
+				9C318FFD29095ABB00F8589A /* Bundle-Decodable.swift in Sources */,
 				9C318FF129093E0B00F8589A /* MainTabBarController.swift in Sources */,
 				9C318FF529093E6500F8589A /* UsersViewController.swift in Sources */,
 				9C1E4F9429086B89001BED50 /* UIButton + Ext.swift in Sources */,
