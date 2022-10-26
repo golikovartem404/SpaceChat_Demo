@@ -39,7 +39,7 @@ class ChatListViewController: UIViewController {
         let collection = UICollectionView(frame: .zero,
                                           collectionViewLayout: layout)
         collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell2")
+        collection.register(ActiveChatCollectionViewCell.self, forCellWithReuseIdentifier: ActiveChatCollectionViewCell.identifier)
         collection.backgroundColor = .clear
         return collection
     }()
@@ -133,16 +133,20 @@ extension ChatListViewController {
 
 extension ChatListViewController {
 
+    private func configure<T: SelfConfiguringCell>(cellType: T.Type, with value: MChat, for indexPath: IndexPath) -> T {
+        guard let cell = chatCollection.dequeueReusableCell(withReuseIdentifier: cellType.identifier, for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)")}
+        cell.configure(with: value)
+        return cell
+    }
+
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MChat>(collectionView: chatCollection, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unmnown section") }
             switch section {
             case .activeChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-                cell.backgroundColor = .systemMint
-                return cell
+                return self.configure(cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
             case .waitingChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
                 cell.backgroundColor = .systemYellow
                 return cell
             }
