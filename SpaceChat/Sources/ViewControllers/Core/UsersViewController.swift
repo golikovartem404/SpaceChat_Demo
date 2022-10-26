@@ -26,8 +26,9 @@ class UsersViewController: UIViewController {
     private lazy var usersCollection: UICollectionView = {
         let layout = createCompositionalLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collection.register(UserCollectionViewCell.self, forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
         collection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.identifier)
+        collection.backgroundColor = .clear
         return collection
     }()
 
@@ -135,9 +136,10 @@ extension UsersViewController {
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unmnown section") }
             switch section {
             case .users:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-                cell.backgroundColor = .systemBlue
-                return cell
+                return self.configure(collection: collectionView,
+                                      cellType: UserCollectionViewCell.self,
+                                      with: user,
+                                      for: indexPath)
             }
         })
         dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in

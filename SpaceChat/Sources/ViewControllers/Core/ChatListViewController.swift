@@ -142,20 +142,20 @@ extension ChatListViewController {
 
 extension ChatListViewController {
 
-    private func configure<T: SelfConfiguringCell>(cellType: T.Type, with value: MChat, for indexPath: IndexPath) -> T {
-        guard let cell = chatCollection.dequeueReusableCell(withReuseIdentifier: cellType.identifier, for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)")}
-        cell.configure(with: value)
-        return cell
-    }
-
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MChat>(collectionView: chatCollection, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unmnown section") }
             switch section {
             case .activeChats:
-                return self.configure(cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
+                return self.configure(collection: collectionView,
+                                      cellType: ActiveChatCollectionViewCell.self,
+                                      with: chat,
+                                      for: indexPath)
             case .waitingChats:
-                return self.configure(cellType: WaitingChatCollectionViewCell.self, with: chat, for: indexPath)
+                return self.configure(collection: collectionView,
+                                      cellType: WaitingChatCollectionViewCell.self,
+                                      with: chat,
+                                      for: indexPath)
             }
         })
         dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in

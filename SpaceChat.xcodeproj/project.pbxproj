@@ -39,6 +39,8 @@
 		9C86B898290995020041729B /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C86B895290992820041729B /* users.json */; };
 		9C86B89B2909958D0041729B /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89A2909958D0041729B /* MUser.swift */; };
 		9C86B89E290995C60041729B /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89D290995C60041729B /* MChat.swift */; };
+		9C86B8A029099DF80041729B /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */; };
+		9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B8A129099F580041729B /* UIViewController + Ext.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,8 @@
 		9C86B895290992820041729B /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		9C86B89A2909958D0041729B /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
 		9C86B89D290995C60041729B /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
+		9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		9C86B8A129099F580041729B /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +205,7 @@
 				9C185F4229087EA700C7296B /* UIStackView + Ext.swift */,
 				9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */,
 				9C86B88F290991480041729B /* Bundle + Ext.swift */,
+				9C86B8A129099F580041729B /* UIViewController + Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			children = (
 				9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */,
 				9C31900629096CA200F8589A /* WaitingChatCollectionViewCell.swift */,
+				9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				9C86B890290991480041729B /* Bundle + Ext.swift in Sources */,
 				9C185F472908854C00C7296B /* SignUpViewController.swift in Sources */,
 				9C31900C29096EB200F8589A /* SectionHeader.swift in Sources */,
+				9C86B8A029099DF80041729B /* UserCollectionViewCell.swift in Sources */,
 				9C3190052909688F00F8589A /* GradientView.swift in Sources */,
 				9C318FF729093E7000F8589A /* ChatListViewController.swift in Sources */,
 				9C1E4F7F29086621001BED50 /* AuthenticationViewController.swift in Sources */,
@@ -363,6 +370,7 @@
 				9C1E4F7D29086621001BED50 /* SceneDelegate.swift in Sources */,
 				9C86B89B2909958D0041729B /* MUser.swift in Sources */,
 				9C31900A29096D9200F8589A /* CollectionCellProtocol.swift in Sources */,
+				9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */,
 				9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */,
 				9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */,
 			);
