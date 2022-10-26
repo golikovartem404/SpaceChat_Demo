@@ -39,7 +39,7 @@ class UsersViewController: UIViewController {
         setupLayout()
         setupNavigationBar()
         createDataSource()
-        reloadData()
+        reloadData(with: nil)
     }
 
     private func setupNavigationBar() {
@@ -151,10 +151,13 @@ extension UsersViewController {
         }
     }
 
-    private func reloadData() {
+    private func reloadData(with searchText: String?) {
+        let filteredUsers = users.filter { user in
+            user.contains(filter: searchText)
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Section, MUser>()
         snapshot.appendSections([.users])
-        snapshot.appendItems(users, toSection: .users)
+        snapshot.appendItems(filteredUsers, toSection: .users)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 
@@ -164,6 +167,6 @@ extension UsersViewController {
 
 extension UsersViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        reloadData(with: searchText)
     }
 }
