@@ -22,6 +22,9 @@
 		9C1E4FA029087706001BED50 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C1E4F9F29087706001BED50 /* SnapKit */; };
 		9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE42909260C00F8589A /* OneLineTextField.swift */; };
 		9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE629092C1A00F8589A /* LoginViewController.swift */; };
+		9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE8290931BA00F8589A /* RegistrationViewController.swift */; };
+		9C318FEB2909332300F8589A /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FEA2909332300F8589A /* AddPhotoView.swift */; };
+		9C318FED290938DD00F8589A /* SegmentedControl + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 		9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Ext.swift"; sourceTree = "<group>"; };
 		9C318FE42909260C00F8589A /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
 		9C318FE629092C1A00F8589A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9C318FE8290931BA00F8589A /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		9C318FEA2909332300F8589A /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl + Ext.swift"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,17 +69,19 @@
 				9C1E4F7E29086621001BED50 /* AuthenticationViewController.swift */,
 				9C185F462908854C00C7296B /* SignUpViewController.swift */,
 				9C318FE629092C1A00F8589A /* LoginViewController.swift */,
+				9C318FE8290931BA00F8589A /* RegistrationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		9C185F452908804500C7296B /* BaseView */ = {
+		9C185F452908804500C7296B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				9CE68FCD29087837000CD9D9 /* ButtonView.swift */,
 				9C318FE42909260C00F8589A /* OneLineTextField.swift */,
+				9C318FEA2909332300F8589A /* AddPhotoView.swift */,
 			);
-			path = BaseView;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		9C1E4F6E29086621001BED50 = {
@@ -113,7 +121,7 @@
 		9C1E4F8F290869A5001BED50 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9C185F452908804500C7296B /* BaseView */,
+				9C185F452908804500C7296B /* CustomViews */,
 				9C185F442908803600C7296B /* ViewControllers */,
 				9C1E4F9229086B7F001BED50 /* Extensions */,
 				9C1E4F91290869BC001BED50 /* App */,
@@ -156,6 +164,7 @@
 				9C1E4F992908700E001BED50 /* UILabel + Ext.swift */,
 				9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */,
 				9C185F4229087EA700C7296B /* UIStackView + Ext.swift */,
+				9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -236,12 +245,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C318FED290938DD00F8589A /* SegmentedControl + Ext.swift in Sources */,
 				9C185F472908854C00C7296B /* SignUpViewController.swift in Sources */,
 				9C1E4F7F29086621001BED50 /* AuthenticationViewController.swift in Sources */,
 				9C1E4F9A2908700E001BED50 /* UILabel + Ext.swift in Sources */,
 				9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */,
+				9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */,
 				9C1E4F9429086B89001BED50 /* UIButton + Ext.swift in Sources */,
 				9C1E4F9629086D5D001BED50 /* UIFont + Ext.swift in Sources */,
+				9C318FEB2909332300F8589A /* AddPhotoView.swift in Sources */,
 				9C1E4F9829086DF5001BED50 /* UIColor + Ext.swift in Sources */,
 				9C1E4F7B29086621001BED50 /* AppDelegate.swift in Sources */,
 				9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */,
