@@ -22,7 +22,7 @@ class AuthenticationViewController: UIViewController {
 
     let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonBlack())
 
-    let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .buttonWhite(), isShadow: true)
+    let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .mainWhite(), isShadow: true)
 
     let mainStackView = UIStackView(axis: .vertical, spacing: 40)
 
