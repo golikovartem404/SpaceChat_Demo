@@ -7,22 +7,6 @@
 
 import UIKit
 
-struct MChat: Hashable, Decodable {
-
-    var username: String
-    var lastMessage: String
-    var userImageString: String
-    var id: Int
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-
-    static func == (lhs: MChat, rhs: MChat) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
 class ChatListViewController: UIViewController {
 
     enum Section: Int, CaseIterable {

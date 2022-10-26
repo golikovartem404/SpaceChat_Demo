@@ -24,12 +24,12 @@ class MainTabBarController: UITabBarController {
         let boldConfig = UIImage.SymbolConfiguration(weight: .medium)
         guard let usersVCImage = UIImage(systemName: "person.2", withConfiguration: boldConfig), let chatListVCImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfig) else { return }
         viewControllers = [
-            generateNavigationController(rootVC: chatListVC,
-                                         title: "Chats",
-                                         image: chatListVCImage),
             generateNavigationController(rootVC: usersVC,
                                          title: "Users",
-                                         image: usersVCImage)
+                                         image: usersVCImage),
+            generateNavigationController(rootVC: chatListVC,
+                                         title: "Chats",
+                                         image: chatListVCImage)
         ]
     }
 
