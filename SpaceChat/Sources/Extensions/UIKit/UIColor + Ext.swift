@@ -30,4 +30,16 @@ extension UIColor {
         return #colorLiteral(red: 0.5568627451, green: 0.6470588235, blue: 0.968627451, alpha: 1)
     }
 
+    static func gradientStartColor() -> UIColor {
+        return #colorLiteral(red: 0.7882352941, green: 0.631372549, blue: 0.9411764706, alpha: 1)
+    }
+
+    static func gradientEndColor() -> UIColor {
+        return #colorLiteral(red: 0.4784313725, green: 0.6980392157, blue: 0.9215686275, alpha: 1)
+    }
+
+    static func headerTextColor() -> UIColor {
+        return #colorLiteral(red: 0.5725490196, green: 0.5725490196, blue: 0.5725490196, alpha: 1)
+    }
+
 }
