@@ -25,4 +25,14 @@ extension UIButton {
         }
     }
 
+    func customizedGoogleButton() {
+        let googleLogo = UIImageView(image: UIImage(named: "googleIcon"), contentMode: .scaleAspectFit)
+        self.addSubview(googleLogo)
+        googleLogo.snp.makeConstraints { make in
+            make.centerY.equalTo(self)
+            make.leading.equalTo(self.snp.leading).offset(24)
+            make.width.height.equalTo(35)
+        }
+    }
+
 }
