@@ -26,4 +26,8 @@ extension UIColor {
         return #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
     }
 
+    static func tabBarTintColor() -> UIColor {
+        return #colorLiteral(red: 0.5568627451, green: 0.6470588235, blue: 0.968627451, alpha: 1)
+    }
+
 }
