@@ -25,21 +25,30 @@ struct MChat: Hashable, Decodable {
 
 class ChatListViewController: UIViewController {
 
-    let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
-    let waitingChats = Bundle.main.decode([MChat].self, from: "waitingChats.json")
-
     enum Section: Int, CaseIterable {
         case waitingChats, activeChats
+
+        func description() -> String {
+            switch self {
+            case .waitingChats:
+                return "Waiting chats"
+            case .activeChats:
+                return "Active chats"
+            }
+        }
     }
 
+    let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
+    let waitingChats = Bundle.main.decode([MChat].self, from: "waitingChats.json")
     var dataSource: UICollectionViewDiffableDataSource<Section, MChat>?
 
     private lazy var chatCollection: UICollectionView = {
         let layout = createCompositionalLayout()
         let collection = UICollectionView(frame: .zero,
                                           collectionViewLayout: layout)
-        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collection.register(WaitingChatCollectionViewCell.self, forCellWithReuseIdentifier: WaitingChatCollectionViewCell.identifier)
         collection.register(ActiveChatCollectionViewCell.self, forCellWithReuseIdentifier: ActiveChatCollectionViewCell.identifier)
+        collection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.identifier)
         collection.backgroundColor = .clear
         return collection
     }()
@@ -89,6 +98,9 @@ extension ChatListViewController {
                 return self.createWaitingChats()
             }
         }
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 16
+        layout.configuration = config
         return layout
     }
 
@@ -107,6 +119,8 @@ extension ChatListViewController {
                                                         trailing: 20)
         section.interGroupSpacing = 20
         section.orthogonalScrollingBehavior = .continuous
+        let sectionHeader = createSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
 
@@ -124,7 +138,18 @@ extension ChatListViewController {
                                                         bottom: 0,
                                                         trailing: 20)
         section.interGroupSpacing = 8
+        let sectionHeader = createSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
         return section
+    }
+
+    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                       heightDimension: .estimated(1))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize,
+                                                                        elementKind: UICollectionView.elementKindSectionHeader,
+                                                                        alignment: .top)
+        return sectionHeader
     }
 
 }
@@ -146,11 +171,15 @@ extension ChatListViewController {
             case .activeChats:
                 return self.configure(cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
             case .waitingChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-                cell.backgroundColor = .systemYellow
-                return cell
+                return self.configure(cellType: WaitingChatCollectionViewCell.self, with: chat, for: indexPath)
             }
         })
+        dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.identifier, for: indexPath) as? SectionHeader else { fatalError("Cannot create a new section header") }
+            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknowned section kind") }
+            sectionHeader.cofigure(withText: section.description(), font: .laoSangamMN20(), textColor: .headerTextColor())
+            return sectionHeader
+        }
     }
 
     private func reloadData() {

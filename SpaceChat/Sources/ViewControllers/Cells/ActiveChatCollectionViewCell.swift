@@ -7,18 +7,12 @@
 
 import UIKit
 
-protocol SelfConfiguringCell {
-    static var identifier: String { get }
-    func configure(with value: MChat)
-}
-
 class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
 
     static var identifier = "ActiveChatCollectionViewCell"
 
     let chatImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
         return imageView
     }()
     let friendName = UILabel(text: "Username", font: .laoSangamMN20())
@@ -31,9 +25,6 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        gradientView.backgroundColor = .brown
-        self.layer.cornerRadius = 5
-        self.clipsToBounds = true
         setupHierarchy()
         setupLayout()
     }
