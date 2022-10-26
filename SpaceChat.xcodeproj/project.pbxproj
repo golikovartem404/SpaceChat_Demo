@@ -21,6 +21,7 @@
 		9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */; };
 		9C1E4FA029087706001BED50 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C1E4F9F29087706001BED50 /* SnapKit */; };
 		9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE42909260C00F8589A /* OneLineTextField.swift */; };
+		9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE629092C1A00F8589A /* LoginViewController.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		9C1E4F992908700E001BED50 /* UILabel + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Ext.swift"; sourceTree = "<group>"; };
 		9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Ext.swift"; sourceTree = "<group>"; };
 		9C318FE42909260C00F8589A /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
+		9C318FE629092C1A00F8589A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 			children = (
 				9C1E4F7E29086621001BED50 /* AuthenticationViewController.swift */,
 				9C185F462908854C00C7296B /* SignUpViewController.swift */,
+				9C318FE629092C1A00F8589A /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */,
 				9C185F4329087EA700C7296B /* UIStackView + Ext.swift in Sources */,
 				9C1E4F7D29086621001BED50 /* SceneDelegate.swift in Sources */,
+				9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */,
 				9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
