@@ -45,6 +45,8 @@
 		9C9369FD2909D1C300470F86 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FC2909D1C300470F86 /* ProfileTextField.swift */; };
 		9C9369FF2909D61A00470F86 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FE2909D61A00470F86 /* UIView + Ext.swift */; };
 		9C936A012909DAB000470F86 /* ChatRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C936A002909DAB000470F86 /* ChatRequestViewController.swift */; };
+		9C936A032909E2F300470F86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C936A022909E2F300470F86 /* GoogleService-Info.plist */; };
+		9C936A062909E45100470F86 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C936A052909E45100470F86 /* FirebaseAuth */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +90,7 @@
 		9C9369FC2909D1C300470F86 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		9C9369FE2909D61A00470F86 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		9C936A002909DAB000470F86 /* ChatRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestViewController.swift; sourceTree = "<group>"; };
+		9C936A022909E2F300470F86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C1E4FA029087706001BED50 /* SnapKit in Frameworks */,
+				9C936A062909E45100470F86 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +159,7 @@
 		9C1E4F8E290869A0001BED50 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C936A022909E2F300470F86 /* GoogleService-Info.plist */,
 				9C1E4F8829086622001BED50 /* Info.plist */,
 				9C1E4F8329086622001BED50 /* Assets.xcassets */,
 			);
@@ -295,6 +300,7 @@
 			name = SpaceChat;
 			packageProductDependencies = (
 				9C1E4F9F29087706001BED50 /* SnapKit */,
+				9C936A052909E45100470F86 /* FirebaseAuth */,
 			);
 			productName = SpaceChat;
 			productReference = 9C1E4F7729086621001BED50 /* SpaceChat.app */;
@@ -326,6 +332,7 @@
 			mainGroup = 9C1E4F6E29086621001BED50;
 			packageReferences = (
 				9C1E4F9E29087706001BED50 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9C936A042909E45100470F86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 9C1E4F7829086621001BED50 /* Products */;
 			projectDirPath = "";
@@ -346,6 +353,7 @@
 				9C86B896290994CF0041729B /* waitingChats.json in Resources */,
 				9C1E4F8729086622001BED50 /* LaunchScreen.storyboard in Resources */,
 				9C1E4F8429086622001BED50 /* Assets.xcassets in Resources */,
+				9C936A032909E2F300470F86 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +614,14 @@
 				kind = branch;
 			};
 		};
+		9C936A042909E45100470F86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -613,6 +629,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C1E4F9E29087706001BED50 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		9C936A052909E45100470F86 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C936A042909E45100470F86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
