@@ -32,6 +32,7 @@
 		9C318FFB29095AA100F8589A /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C318FFA29095AA100F8589A /* activeChats.json */; };
 		9C318FFD29095ABB00F8589A /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */; };
 		9C319002290961AE00F8589A /* ActiveChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */; };
+		9C3190052909688F00F8589A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3190042909688F00F8589A /* GradientView.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		9C318FFA29095AA100F8589A /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activeChats.json; path = "../../../../../../Downloads/15. урок/IChat/Extensions/UIKIt/activeChats.json"; sourceTree = "<group>"; };
 		9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle-Decodable.swift"; path = "../../../../../../../../Downloads/15. урок/IChat/Extensions/Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		9C3190042909688F00F8589A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,10 +82,10 @@
 		9C185F442908803600C7296B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C3190032909687D00F8589A /* TabBar */,
 				9C318FFE2909617D00F8589A /* Cells */,
 				9C318FEF29093DF900F8589A /* Chats */,
 				9C318FEE29093DD900F8589A /* Sign In */,
-				9C318FF029093E0B00F8589A /* MainTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -94,6 +96,7 @@
 				9CE68FCD29087837000CD9D9 /* ButtonView.swift */,
 				9C318FE42909260C00F8589A /* OneLineTextField.swift */,
 				9C318FEA2909332300F8589A /* AddPhotoView.swift */,
+				9C3190042909688F00F8589A /* GradientView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -214,6 +217,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9C3190032909687D00F8589A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				9C318FF029093E0B00F8589A /* MainTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -294,6 +305,7 @@
 			files = (
 				9C318FED290938DD00F8589A /* SegmentedControl + Ext.swift in Sources */,
 				9C185F472908854C00C7296B /* SignUpViewController.swift in Sources */,
+				9C3190052909688F00F8589A /* GradientView.swift in Sources */,
 				9C318FF729093E7000F8589A /* ChatListViewController.swift in Sources */,
 				9C1E4F7F29086621001BED50 /* AuthenticationViewController.swift in Sources */,
 				9C1E4F9A2908700E001BED50 /* UILabel + Ext.swift in Sources */,

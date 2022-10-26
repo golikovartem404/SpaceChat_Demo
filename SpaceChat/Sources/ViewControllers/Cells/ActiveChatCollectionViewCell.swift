@@ -23,7 +23,10 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
     }()
     let friendName = UILabel(text: "Username", font: .laoSangamMN20())
     let lastMessage = UILabel(text: "How are you?", font: .laoSangamMN18())
-    let gradientView = UIView()
+    let gradientView = GradientView(from: .topTrailing,
+                                    to: .bottomLeading,
+                                    startColor: .gradientStartColor(),
+                                    endColor: .gradientEndColor())
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,7 +72,7 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
         gradientView.snp.makeConstraints { make in
             make.trailing.equalTo(self)
             make.centerY.equalTo(self)
-            make.width.equalTo(8)
+            make.width.equalTo(10)
             make.height.equalTo(self)
         }
     }
