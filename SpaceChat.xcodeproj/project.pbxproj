@@ -28,14 +28,19 @@
 		9C318FF129093E0B00F8589A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF029093E0B00F8589A /* MainTabBarController.swift */; };
 		9C318FF529093E6500F8589A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF429093E6500F8589A /* UsersViewController.swift */; };
 		9C318FF729093E7000F8589A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FF629093E7000F8589A /* ChatListViewController.swift */; };
-		9C318FF929095A9900F8589A /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C318FF829095A9900F8589A /* waitingChats.json */; };
-		9C318FFB29095AA100F8589A /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C318FFA29095AA100F8589A /* activeChats.json */; };
-		9C318FFD29095ABB00F8589A /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */; };
 		9C319002290961AE00F8589A /* ActiveChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */; };
 		9C3190052909688F00F8589A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3190042909688F00F8589A /* GradientView.swift */; };
 		9C31900729096CA200F8589A /* WaitingChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C31900629096CA200F8589A /* WaitingChatCollectionViewCell.swift */; };
 		9C31900A29096D9200F8589A /* CollectionCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C31900929096D9200F8589A /* CollectionCellProtocol.swift */; };
 		9C31900C29096EB200F8589A /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C31900B29096EB200F8589A /* SectionHeader.swift */; };
+		9C86B890290991480041729B /* Bundle + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B88F290991480041729B /* Bundle + Ext.swift */; };
+		9C86B896290994CF0041729B /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C86B8932909920D0041729B /* waitingChats.json */; };
+		9C86B897290994D30041729B /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C86B894290992380041729B /* activeChats.json */; };
+		9C86B898290995020041729B /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C86B895290992820041729B /* users.json */; };
+		9C86B89B2909958D0041729B /* MUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89A2909958D0041729B /* MUser.swift */; };
+		9C86B89E290995C60041729B /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89D290995C60041729B /* MChat.swift */; };
+		9C86B8A029099DF80041729B /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */; };
+		9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B8A129099F580041729B /* UIViewController + Ext.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,14 +67,19 @@
 		9C318FF029093E0B00F8589A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9C318FF429093E6500F8589A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		9C318FF629093E7000F8589A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		9C318FF829095A9900F8589A /* waitingChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = waitingChats.json; path = "../../../../../../Downloads/15. урок/IChat/Extensions/UIKIt/waitingChats.json"; sourceTree = "<group>"; };
-		9C318FFA29095AA100F8589A /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activeChats.json; path = "../../../../../../Downloads/15. урок/IChat/Extensions/UIKIt/activeChats.json"; sourceTree = "<group>"; };
-		9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle-Decodable.swift"; path = "../../../../../../../../Downloads/15. урок/IChat/Extensions/Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		9C3190042909688F00F8589A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9C31900629096CA200F8589A /* WaitingChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		9C31900929096D9200F8589A /* CollectionCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellProtocol.swift; sourceTree = "<group>"; };
 		9C31900B29096EB200F8589A /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		9C86B88F290991480041729B /* Bundle + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle + Ext.swift"; sourceTree = "<group>"; };
+		9C86B8932909920D0041729B /* waitingChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
+		9C86B894290992380041729B /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
+		9C86B895290992820041729B /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
+		9C86B89A2909958D0041729B /* MUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUser.swift; sourceTree = "<group>"; };
+		9C86B89D290995C60041729B /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
+		9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		9C86B8A129099F580041729B /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +100,7 @@
 			children = (
 				9C3190032909687D00F8589A /* TabBar */,
 				9C318FFE2909617D00F8589A /* Cells */,
-				9C318FEF29093DF900F8589A /* Chats */,
+				9C318FEF29093DF900F8589A /* Core */,
 				9C318FEE29093DD900F8589A /* Sign In */,
 			);
 			path = ViewControllers;
@@ -145,9 +155,11 @@
 		9C1E4F8F290869A5001BED50 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9C86B899290995840041729B /* Models */,
+				9C86B8932909920D0041729B /* waitingChats.json */,
+				9C86B895290992820041729B /* users.json */,
+				9C86B894290992380041729B /* activeChats.json */,
 				9C31900829096D7F00F8589A /* Protocols */,
-				9C318FFA29095AA100F8589A /* activeChats.json */,
-				9C318FF829095A9900F8589A /* waitingChats.json */,
 				9C185F452908804500C7296B /* CustomViews */,
 				9C185F442908803600C7296B /* ViewControllers */,
 				9C1E4F9229086B7F001BED50 /* Extensions */,
@@ -192,7 +204,8 @@
 				9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */,
 				9C185F4229087EA700C7296B /* UIStackView + Ext.swift */,
 				9C318FEC290938DD00F8589A /* SegmentedControl + Ext.swift */,
-				9C318FFC29095ABB00F8589A /* Bundle-Decodable.swift */,
+				9C86B88F290991480041729B /* Bundle + Ext.swift */,
+				9C86B8A129099F580041729B /* UIViewController + Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -208,13 +221,13 @@
 			path = "Sign In";
 			sourceTree = "<group>";
 		};
-		9C318FEF29093DF900F8589A /* Chats */ = {
+		9C318FEF29093DF900F8589A /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				9C318FF629093E7000F8589A /* ChatListViewController.swift */,
 				9C318FF429093E6500F8589A /* UsersViewController.swift */,
 			);
-			path = Chats;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		9C318FFE2909617D00F8589A /* Cells */ = {
@@ -222,6 +235,7 @@
 			children = (
 				9C319001290961AE00F8589A /* ActiveChatCollectionViewCell.swift */,
 				9C31900629096CA200F8589A /* WaitingChatCollectionViewCell.swift */,
+				9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -240,6 +254,15 @@
 				9C31900929096D9200F8589A /* CollectionCellProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9C86B899290995840041729B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9C86B89A2909958D0041729B /* MUser.swift */,
+				9C86B89D290995C60041729B /* MChat.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,10 +329,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C318FF929095A9900F8589A /* waitingChats.json in Resources */,
+				9C86B898290995020041729B /* users.json in Resources */,
+				9C86B897290994D30041729B /* activeChats.json in Resources */,
+				9C86B896290994CF0041729B /* waitingChats.json in Resources */,
 				9C1E4F8729086622001BED50 /* LaunchScreen.storyboard in Resources */,
 				9C1E4F8429086622001BED50 /* Assets.xcassets in Resources */,
-				9C318FFB29095AA100F8589A /* activeChats.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,9 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C86B89E290995C60041729B /* MChat.swift in Sources */,
 				9C318FED290938DD00F8589A /* SegmentedControl + Ext.swift in Sources */,
+				9C86B890290991480041729B /* Bundle + Ext.swift in Sources */,
 				9C185F472908854C00C7296B /* SignUpViewController.swift in Sources */,
 				9C31900C29096EB200F8589A /* SectionHeader.swift in Sources */,
+				9C86B8A029099DF80041729B /* UserCollectionViewCell.swift in Sources */,
 				9C3190052909688F00F8589A /* GradientView.swift in Sources */,
 				9C318FF729093E7000F8589A /* ChatListViewController.swift in Sources */,
 				9C1E4F7F29086621001BED50 /* AuthenticationViewController.swift in Sources */,
@@ -330,7 +357,6 @@
 				9C31900729096CA200F8589A /* WaitingChatCollectionViewCell.swift in Sources */,
 				9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */,
 				9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */,
-				9C318FFD29095ABB00F8589A /* Bundle-Decodable.swift in Sources */,
 				9C318FF129093E0B00F8589A /* MainTabBarController.swift in Sources */,
 				9C318FF529093E6500F8589A /* UsersViewController.swift in Sources */,
 				9C1E4F9429086B89001BED50 /* UIButton + Ext.swift in Sources */,
@@ -342,7 +368,9 @@
 				9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */,
 				9C185F4329087EA700C7296B /* UIStackView + Ext.swift in Sources */,
 				9C1E4F7D29086621001BED50 /* SceneDelegate.swift in Sources */,
+				9C86B89B2909958D0041729B /* MUser.swift in Sources */,
 				9C31900A29096D9200F8589A /* CollectionCellProtocol.swift in Sources */,
+				9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */,
 				9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */,
 				9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */,
 			);
