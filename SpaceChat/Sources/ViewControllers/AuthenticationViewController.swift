@@ -35,6 +35,8 @@ class AuthenticationViewController: UIViewController {
         setupLayout()
     }
 
+    // MARK: - Setups
+
     func setupHierachy() {
         view.addSubview(logoImageView)
         let google = ButtonView(label: googleLabel, button: googleButton)
@@ -61,30 +63,4 @@ class AuthenticationViewController: UIViewController {
         }
 
     }
-
-
 }
-
-// MARK: - SwiftUI Preview
-
-//import SwiftUI
-//
-//struct AuthenticationViewControllerProvider: PreviewProvider {
-//
-//    static var previews: some View {
-//        ContainerView().edgesIgnoringSafeArea(.all)
-//    }
-//
-//    struct ContainerView: UIViewControllerRepresentable {
-//
-//        let viewController = AuthenticationViewController()
-//
-//        func makeUIViewController(context: Context) -> some UIViewController {
-//            return viewController
-//        }
-//
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//        }
-//    }
-//}
