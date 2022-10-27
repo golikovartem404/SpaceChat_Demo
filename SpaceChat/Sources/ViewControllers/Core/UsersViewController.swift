@@ -11,6 +11,7 @@ import FirebaseAuth
 class UsersViewController: UIViewController {
 
 //    let users = Bundle.main.decode([MUser].self, from: "users.json")
+    private let currentUser: MUser
     let users = [MUser]()
     var dataSource: UICollectionViewDiffableDataSource<Section, MUser>?
 
@@ -25,8 +26,6 @@ class UsersViewController: UIViewController {
         }
     }
 
-    private let currentUser: MUser
-
     init(currentUser: MUser) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
@@ -39,9 +38,19 @@ class UsersViewController: UIViewController {
 
     private lazy var usersCollection: UICollectionView = {
         let layout = createCompositionalLayout()
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(UserCollectionViewCell.self, forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
-        collection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.identifier)
+        let collection = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
+        collection.register(
+            UserCollectionViewCell.self,
+            forCellWithReuseIdentifier: UserCollectionViewCell.identifier
+        )
+        collection.register(
+            SectionHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeader.identifier
+        )
         collection.backgroundColor = .clear
         return collection
     }()
@@ -63,7 +72,12 @@ class UsersViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(signOut))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Log Out",
+            style: .plain,
+            target: self,
+            action: #selector(signOut)
+        )
     }
 
     private func setupHierarchy() {
@@ -83,18 +97,31 @@ class UsersViewController: UIViewController {
 
 extension UsersViewController {
     @objc private func signOut() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure to sign out?", preferredStyle: .alert)
-        let actionYes = UIAlertAction(title: "Sign Out", style: .destructive) { _ in
+        let alertController = UIAlertController(
+            title: nil,
+            message: "Are you sure to sign out?",
+            preferredStyle: .alert
+        )
+        let actionYes = UIAlertAction(
+            title: "Sign Out",
+            style: .destructive
+        ) { _ in
             do {
                 try Auth.auth().signOut()
-                SceneDelegate.shared.changeViewcontroller(viewController: AuthenticationViewController(),
-                                                          animated: true,
-                                                          animationOptions: .transitionFlipFromTop)
+                SceneDelegate.shared.changeViewcontroller(
+                    viewController: AuthenticationViewController(),
+                    animated: true,
+                    animationOptions: .transitionFlipFromTop
+                )
             } catch {
                 print("Error while signing out: \(error.localizedDescription)")
             }
         }
-        let actionNo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let actionNo = UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil
+        )
         alertController.addAction(actionYes)
         alertController.addAction(actionNo)
         present(alertController, animated: true)
@@ -120,11 +147,13 @@ extension UsersViewController {
     }
 
     private func createUsersSectionLayout() -> NSCollectionLayoutSection {
+
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalWidth(0.6)
@@ -136,6 +165,7 @@ extension UsersViewController {
         )
         let spacing: CGFloat = 15
         group.interItemSpacing = .fixed(15)
+
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = spacing
         section.contentInsets = NSDirectionalEdgeInsets(
@@ -144,6 +174,7 @@ extension UsersViewController {
             bottom: 0,
             trailing: 15
         )
+
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
         return section
@@ -161,7 +192,6 @@ extension UsersViewController {
         )
         return sectionHeader
     }
-
 }
 
 // MARK: - Diffable DataSource Extension
@@ -170,20 +200,42 @@ extension UsersViewController {
 
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MUser>(collectionView: usersCollection, cellProvider: { (collectionView, indexPath, user) -> UICollectionViewCell? in
-            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unmnown section") }
+            guard
+                let section = Section(rawValue: indexPath.section)
+            else {
+                fatalError("Unmnown section")
+            }
             switch section {
             case .users:
-                return self.configure(collection: collectionView,
-                                      cellType: UserCollectionViewCell.self,
-                                      with: user,
-                                      for: indexPath)
+                return self.configure(
+                    collection: collectionView,
+                    cellType: UserCollectionViewCell.self,
+                    with: user,
+                    for: indexPath
+                )
             }
         })
         dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
-            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.identifier, for: indexPath) as? SectionHeader else { fatalError("Cannot create a new section header") }
-            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknowned section kind") }
+            guard
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: SectionHeader.identifier,
+                    for: indexPath
+                ) as? SectionHeader
+            else {
+                fatalError("Cannot create a new section header")
+            }
+            guard
+                let section = Section(rawValue: indexPath.section)
+            else {
+                fatalError("Unknowned section kind")
+            }
             let items = self.dataSource?.snapshot().itemIdentifiers(inSection: .users)
-            sectionHeader.cofigure(withText: section.description(usersCount: items?.count ?? 0), font: .systemFont(ofSize: 36, weight: .light), textColor: .label)
+            sectionHeader.cofigure(
+                withText: section.description(usersCount: items?.count ?? 0),
+                font: .systemFont(ofSize: 36, weight: .light),
+                textColor: .label
+            )
             return sectionHeader
         }
     }

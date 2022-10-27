@@ -14,22 +14,54 @@ class RegistrationViewController: UIViewController {
 
     let addPhotoView = AddPhotoView()
 
-    let setupLabel = UILabel(text: "Set up profile", font: .avenir26())
-    let fullNameLabel = UILabel(text: "Full name")
-    let aboutMeLabel = UILabel(text: "About me")
-    let sexLabel = UILabel(text: "Sex")
+    let setupLabel = UILabel(
+        text: "Set up profile",
+        font: .avenir26()
+    )
+    let fullNameLabel = UILabel(
+        text: "Full name"
+    )
+    let aboutMeLabel = UILabel(
+        text: "About me"
+    )
+    let sexLabel = UILabel(
+        text: "Sex"
+    )
 
-    let fullNameTextField = OneLineTextField()
-    let aboutMeTextField = OneLineTextField()
+    let fullNameTextField = OneLineTextField(
+        font: .avenir20()
+    )
+    let aboutMeTextField = OneLineTextField(
+        font: .avenir20()
+    )
 
-    let sexSegmentedControl = UISegmentedControl(first: "Male", second: "Female")
+    let sexSegmentedControl = UISegmentedControl(
+        first: "Male",
+        second: "Female"
+    )
 
-    let goToChatsButton = UIButton(title: "Go to chats", titleColor: .white, backgroundColor: .buttonBlack())
+    let goToChatsButton = UIButton(
+        title: "Go to chats",
+        titleColor: .white,
+        backgroundColor: .buttonBlack()
+    )
 
-    let fullNameStack = UIStackView(axis: .vertical, spacing: 0)
-    let aboutMeStack = UIStackView(axis: .vertical, spacing: 0)
-    let sexSegmentedStack = UIStackView(axis: .vertical, spacing: 10)
-    let mainStackView = UIStackView(axis: .vertical, spacing: 40)
+    let fullNameStack = UIStackView(
+        axis: .vertical,
+        spacing: 0
+    )
+    let aboutMeStack = UIStackView(
+        axis: .vertical,
+        spacing: 0
+    )
+    let sexSegmentedStack = UIStackView(
+        axis: .vertical,
+        spacing: 10
+    )
+    let mainStackView = UIStackView(
+        axis: .vertical,
+        spacing: 40
+    )
 
     init(currentUser: User) {
         self.currentUser = currentUser
@@ -97,6 +129,8 @@ class RegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - Actions for buttons extension
+
 extension RegistrationViewController {
 
     @objc func goToChatsButtonPressed() {
@@ -107,20 +141,26 @@ extension RegistrationViewController {
                 username: fullNameTextField.text,
                 avatarImageString: nil,
                 description: aboutMeTextField.text,
-                sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { result in
-                    switch result {
-                    case .success(let mUser):
-                        self.showAlert(withTitle: "Success", andMessage: "Let's write your first message") {
-                            let mainTabBar = MainTabBarController(currentUser: mUser)
-                            mainTabBar.modalPresentationStyle = .fullScreen
-                            self.present(mainTabBar, animated: true)
-                        }
-                        print(mUser.username)
-                    case .failure(let error):
-                        self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
+                sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)
+            ) { result in
+                switch result {
+                case .success(let mUser):
+                    self.showAlert(
+                        withTitle: "Success",
+                        andMessage: "Let's write your first message"
+                    ) {
+                        let mainTabBar = MainTabBarController(currentUser: mUser)
+                        mainTabBar.modalPresentationStyle = .fullScreen
+                        self.present(mainTabBar, animated: true)
                     }
+                    print(mUser.username)
+                case .failure(let error):
+                    self.showAlert(
+                        withTitle: "Failure",
+                        andMessage: error.localizedDescription
+                    )
                 }
+            }
         }
     }
-
 }

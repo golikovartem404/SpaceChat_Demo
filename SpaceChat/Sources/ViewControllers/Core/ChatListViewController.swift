@@ -40,11 +40,24 @@ class ChatListViewController: UIViewController {
     
     private lazy var chatCollection: UICollectionView = {
         let layout = createCompositionalLayout()
-        let collection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
-        collection.register(WaitingChatCollectionViewCell.self, forCellWithReuseIdentifier: WaitingChatCollectionViewCell.identifier)
-        collection.register(ActiveChatCollectionViewCell.self, forCellWithReuseIdentifier: ActiveChatCollectionViewCell.identifier)
-        collection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.identifier)
+        let collection = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
+        collection.register(
+            WaitingChatCollectionViewCell.self,
+            forCellWithReuseIdentifier: WaitingChatCollectionViewCell.identifier
+        )
+        collection.register(
+            ActiveChatCollectionViewCell.self,
+            forCellWithReuseIdentifier: ActiveChatCollectionViewCell.identifier
+        )
+        collection.register(
+            SectionHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeader.identifier
+        )
+
         collection.backgroundColor = .clear
         return collection
     }()
@@ -101,18 +114,26 @@ extension ChatListViewController {
     }
 
     private func createWaitingChats() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(88),
-                                               heightDimension: .absolute(88))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(88),
+            heightDimension: .absolute(88)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16,
-                                                        leading: 20,
-                                                        bottom: 0,
-                                                        trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 16,
+            leading: 20,
+            bottom: 0,
+            trailing: 20
+        )
         section.interGroupSpacing = 20
         section.orthogonalScrollingBehavior = .continuous
         let sectionHeader = createSectionHeader()
@@ -121,18 +142,26 @@ extension ChatListViewController {
     }
 
     private func createActiveChats() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .absolute(78))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
-                                                     subitems: [item])
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(78)
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16,
-                                                        leading: 20,
-                                                        bottom: 0,
-                                                        trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 16,
+            leading: 20,
+            bottom: 0,
+            trailing: 20
+        )
         section.interGroupSpacing = 8
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -140,11 +169,15 @@ extension ChatListViewController {
     }
 
     private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .estimated(1))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize,
-                                                                        elementKind: UICollectionView.elementKindSectionHeader,
-                                                                        alignment: .top)
+        let sectionHeaderSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(1)
+        )
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: sectionHeaderSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
         return sectionHeader
     }
 
@@ -171,9 +204,21 @@ extension ChatListViewController {
             }
         })
         dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
-            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.identifier, for: indexPath) as? SectionHeader else { fatalError("Cannot create a new section header") }
-            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknowned section kind") }
-            sectionHeader.cofigure(withText: section.description(), font: .laoSangamMN20(), textColor: .headerTextColor())
+            guard
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.identifier, for: indexPath) as? SectionHeader
+            else {
+                fatalError("Cannot create a new section header")
+            }
+            guard
+                let section = Section(rawValue: indexPath.section)
+            else {
+                fatalError("Unknowned section kind")
+            }
+            sectionHeader.cofigure(
+                withText: section.description(),
+                font: .laoSangamMN20(),
+                textColor: .headerTextColor()
+            )
             return sectionHeader
         }
     }

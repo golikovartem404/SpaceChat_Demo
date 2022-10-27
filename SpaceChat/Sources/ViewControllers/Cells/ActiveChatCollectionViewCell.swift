@@ -15,12 +15,20 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
         let imageView = UIImageView()
         return imageView
     }()
-    let friendName = UILabel(text: "Username", font: .laoSangamMN20())
-    let lastMessage = UILabel(text: "How are you?", font: .laoSangamMN18())
-    let gradientView = GradientView(from: .topTrailing,
-                                    to: .bottomLeading,
-                                    startColor: .gradientStartColor(),
-                                    endColor: .gradientEndColor())
+    let friendName = UILabel(
+        text: "Username",
+        font: .laoSangamMN20()
+    )
+    let lastMessage = UILabel(
+        text: "How are you?",
+        font: .laoSangamMN18()
+    )
+    let gradientView = GradientView(
+        from: .topTrailing,
+        to: .bottomLeading,
+        startColor: .gradientStartColor(),
+        endColor: .gradientEndColor()
+    )
 
     override init(frame: CGRect) {
         super.init(frame: frame)

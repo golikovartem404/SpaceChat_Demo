@@ -20,19 +20,43 @@ class AuthenticationViewController: UIViewController {
 
     // MARK: - Outlets
 
-    let logoImageView = UIImageView(image: UIImage(named: "logo"), contentMode: .scaleAspectFit)
+    let logoImageView = UIImageView(
+        image: UIImage(named: "logo"),
+        contentMode: .scaleAspectFit
+    )
 
-    let googleLabel = UILabel(text: "Get started with")
-    let emailLabel = UILabel(text: "Or sign up with")
-    let alreadyOnboardLabel = UILabel(text: "Already onboard?")
+    let googleLabel = UILabel(
+        text: "Get started with"
+    )
+    let emailLabel = UILabel(
+        text: "Or sign up with"
+    )
+    let alreadyOnboardLabel = UILabel(
+        text: "Already onboard?"
+    )
 
-    let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
+    let googleButton = UIButton(
+        title: "Google",
+        titleColor: .black,
+        backgroundColor: .white,
+        isShadow: true
+    )
+    let emailButton = UIButton(
+        title: "Email",
+        titleColor: .white,
+        backgroundColor: .buttonBlack()
+    )
+    let loginButton = UIButton(
+        title: "Login",
+        titleColor: .buttonRed(),
+        backgroundColor: .mainWhite(),
+        isShadow: true
+    )
 
-    let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonBlack())
-
-    let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .mainWhite(), isShadow: true)
-
-    let mainStackView = UIStackView(axis: .vertical, spacing: 40)
+    let mainStackView = UIStackView(
+        axis: .vertical,
+        spacing: 40
+    )
 
     // MARK: - Lifecycle
 
@@ -51,9 +75,18 @@ class AuthenticationViewController: UIViewController {
 
     func setupHierachy() {
         view.addSubview(logoImageView)
-        let google = ButtonView(label: googleLabel, button: googleButton)
-        let email = ButtonView(label: emailLabel, button: emailButton)
-        let alreadyOnboard = ButtonView(label: alreadyOnboardLabel, button: loginButton)
+        let google = ButtonView(
+            label: googleLabel,
+            button: googleButton
+        )
+        let email = ButtonView(
+            label: emailLabel,
+            button: emailButton
+        )
+        let alreadyOnboard = ButtonView(
+            label: alreadyOnboardLabel,
+            button: loginButton
+        )
         mainStackView.addArrangedSubview(google)
         mainStackView.addArrangedSubview(email)
         mainStackView.addArrangedSubview(alreadyOnboard)
@@ -94,9 +127,16 @@ extension AuthenticationViewController {
     }
 
     @objc func googleButtonTapped() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        guard
+            let clientID = FirebaseApp.app()?.options.clientID
+        else {
+            return
+        }
         let signInConfig = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+        GIDSignIn.sharedInstance.signIn(
+            with: signInConfig,
+            presenting: self
+        ) { user, error in
             AuthenticationService.shared.googleLogin(user: user,
                                                      error: error) { result in
                 switch result {
@@ -104,25 +144,39 @@ extension AuthenticationViewController {
                     FirestoreService.shared.getUserData(user: user) { result in
                         switch result {
                         case .success(let mUser):
-                                self.showAlert(withTitle: "Success", andMessage: "You are already registered") {
-                                    let mainTabBar = MainTabBarController(currentUser: mUser)
-                                    mainTabBar.modalPresentationStyle = .fullScreen
-                                    self.present(mainTabBar, animated: true)
-                                }
+                            self.showAlert(
+                                withTitle: "Success",
+                                andMessage: "Successfully login!"
+                            ) {
+                                let mainTabBar = MainTabBarController(currentUser: mUser)
+                                mainTabBar.modalPresentationStyle = .fullScreen
+                                self.present(mainTabBar, animated: true)
+                            }
                         case .failure(_):
-                            self.showAlert(withTitle: "Success", andMessage: "You are already registered") {
-                                self.present(RegistrationViewController(currentUser: user), animated: true)
+                            self.showAlert(
+                                withTitle: "Success",
+                                andMessage: "Please setup your profile!"
+                            ) {
+                                self.present(
+                                    RegistrationViewController(currentUser: user),
+                                    animated: true
+                                )
                             }
                         }
                     }
                 case .failure(let error):
-                    self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+                    self.showAlert(
+                        withTitle: "Error",
+                        andMessage: error.localizedDescription
+                    )
                 }
             }
         }
     }
 
 }
+
+// MARK: - Delegate Extension
 
 extension AuthenticationViewController: AuthenticationNavigtionDelegate {
     func toLoginVC() {

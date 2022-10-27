@@ -10,12 +10,38 @@ import UIKit
 class ChatRequestViewController: UIViewController {
 
     let containerView = UIView()
-    let imageView = UIImageView(image: UIImage(named: "human7"), contentMode: .scaleAspectFill)
-    let nameLabel = UILabel(text: "Justin Kingsley", font: .systemFont(ofSize: 20, weight: .light))
-    let aboutMeLabel = UILabel(text: "You have the opportunity to start new chat", font: .systemFont(ofSize: 16, weight: .light))
-    let acceptButton = UIButton(title: "ACCEPT", titleColor: .white, backgroundColor: .black, font: .laoSangamMN20(), isShadow: false, cornerRadius: 10)
-    let denyButton = UIButton(title: "DENY", titleColor: .denyButtonColor(), backgroundColor: .mainWhite(), font: .laoSangamMN20(), isShadow: false, cornerRadius: 10)
-    let buttonsStackView = UIStackView(axis: .horizontal, spacing: 7)
+    let imageView = UIImageView(
+        image: UIImage(named: "human7"),
+        contentMode: .scaleAspectFill
+    )
+    let nameLabel = UILabel(
+        text: "Justin Kingsley",
+        font: .systemFont(ofSize: 20, weight: .light)
+    )
+    let aboutMeLabel = UILabel(
+        text: "You have the opportunity to start new chat",
+        font: .systemFont(ofSize: 16, weight: .light)
+    )
+    let acceptButton = UIButton(
+        title: "ACCEPT",
+        titleColor: .white,
+        backgroundColor: .black,
+        font: .laoSangamMN20(),
+        isShadow: false,
+        cornerRadius: 10
+    )
+    let denyButton = UIButton(
+        title: "DENY",
+        titleColor: .denyButtonColor(),
+        backgroundColor: .mainWhite(),
+        font: .laoSangamMN20(),
+        isShadow: false,
+        cornerRadius: 10
+    )
+    let buttonsStackView = UIStackView(
+        axis: .horizontal,
+        spacing: 7
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()

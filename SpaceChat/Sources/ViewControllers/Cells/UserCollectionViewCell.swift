@@ -16,19 +16,18 @@ class UserCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
         imageView.backgroundColor = .red
         return imageView
     }()
-    let usernameLabel = UILabel(text: "text", font: .laoSangamMN20())
+    let usernameLabel = UILabel(
+        text: "text",
+        font: .laoSangamMN20()
+    )
     let containerView = UIView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = . white
-        self.layer.cornerRadius = 4
-        self.layer.shadowColor = UIColor.userCellShadowColor().cgColor
-        self.layer.shadowRadius = 3
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
         setupHierarchy()
         setupLayout()
+        customizeCell()
     }
 
     required init?(coder: NSCoder) {
@@ -64,7 +63,14 @@ class UserCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
             make.trailing.equalTo(containerView).offset(-5)
             make.bottom.equalTo(containerView)
         }
+    }
 
+    private func customizeCell() {
+        self.layer.cornerRadius = 4
+        self.layer.shadowColor = UIColor.userCellShadowColor().cgColor
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 
     func configure<U>(with value: U) where U : Hashable {

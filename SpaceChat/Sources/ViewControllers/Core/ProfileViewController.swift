@@ -10,9 +10,18 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     let containerView = UIView()
-    let imageView = UIImageView(image: UIImage(named: "human5"), contentMode: .scaleAspectFill)
-    let nameLabel = UILabel(text: "Amy Lee", font: .systemFont(ofSize: 20, weight: .light))
-    let aboutMeLabel = UILabel(text: "Very love cats and dogs", font: .systemFont(ofSize: 16, weight: .light))
+    let imageView = UIImageView(
+        image: UIImage(named: "human5"),
+        contentMode: .scaleAspectFill
+    )
+    let nameLabel = UILabel(
+        text: "Amy Lee",
+        font: .systemFont(ofSize: 20, weight: .light)
+    )
+    let aboutMeLabel = UILabel(
+        text: "Very love cats and dogs",
+        font: .systemFont(ofSize: 16, weight: .light)
+    )
     let myTextField = ProfileTextField()
 
     override func viewDidLoad() {
