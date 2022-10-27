@@ -106,7 +106,9 @@ extension RegistrationViewController {
                     switch result {
                     case .success(let mUser):
                         self.showAlert(withTitle: "Success", andMessage: "Let's write your first message") {
-                            self.present(MainTabBarController(), animated: true)
+                            let mainTabBar = MainTabBarController(currentUser: mUser)
+                            mainTabBar.modalPresentationStyle = .fullScreen
+                            self.present(mainTabBar, animated: true)
                         }
                         print(mUser.username)
                     case .failure(let error):

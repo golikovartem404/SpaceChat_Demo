@@ -109,8 +109,10 @@ extension LoginViewController {
                     FirestoreService.shared.getUserData(user: user) { result in
                         switch result {
                         case .success(let mUser):
-                            self.present(MainTabBarController(), animated: true)
-                        case .failure(let error):
+                            let mainTabBar = MainTabBarController(currentUser: mUser)
+                            mainTabBar.modalPresentationStyle = .fullScreen
+                            self.present(mainTabBar, animated: true)
+                        case .failure(_):
                             self.present(RegistrationViewController(currentUser: user), animated: true)
                          }
                     }
