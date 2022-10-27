@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,13 +14,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ChatRequestViewController()
+        if let user = Auth.auth().currentUser {
+            FirestoreService.shared.getUserData(user: user) { result in
+                switch result {
+                case .success(let mUser):
+                    self.window?.rootViewController = MainTabBarController()
+                case .failure(let error):
+                    self.window?.rootViewController = AuthenticationViewController()
+                }
+            }
+        } else {
+            window?.rootViewController = AuthenticationViewController()
+        }
         window?.makeKeyAndVisible()
+    }
+
+    func changeViewcontroller(viewController: UIViewController, animated: Bool, animationOptions: UIView.AnimationOptions) {
+        guard let window = window else { return }
+        window.rootViewController = viewController
+        let options: UIView.AnimationOptions = [animationOptions]
+        UIView.transition(with: window,
+                          duration: 0.5,
+                          options: options,
+                          animations: nil,
+                          completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class UsersViewController: UIViewController {
 
-    let users = Bundle.main.decode([MUser].self, from: "users.json")
+//    let users = Bundle.main.decode([MUser].self, from: "users.json")
+    let users = [MUser]()
     var dataSource: UICollectionViewDiffableDataSource<Section, MUser>?
 
     enum Section: Int, CaseIterable {
@@ -49,6 +51,7 @@ class UsersViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(signOut))
     }
 
     private func setupHierarchy() {
@@ -62,6 +65,28 @@ class UsersViewController: UIViewController {
         }
     }
 
+}
+
+//MARK: - Actions for buttons Extension
+
+extension UsersViewController {
+    @objc private func signOut() {
+        let alertController = UIAlertController(title: nil, message: "Are you sure to sign out?", preferredStyle: .alert)
+        let actionYes = UIAlertAction(title: "Sign Out", style: .destructive) { _ in
+            do {
+                try Auth.auth().signOut()
+                SceneDelegate.shared.changeViewcontroller(viewController: AuthenticationViewController(),
+                                                          animated: true,
+                                                          animationOptions: .transitionFlipFromTop)
+            } catch {
+                print("Error while signing out: \(error.localizedDescription)")
+            }
+        }
+        let actionNo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(actionYes)
+        alertController.addAction(actionNo)
+        present(alertController, animated: true)
+    }
 }
 
 // MARK: - Compositional Layout Setup

@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    weak var delegate: AuthenticationNavigtionDelegate?
+
     let welcomeLabel = UILabel(text: "Welcome back!", font: .avenir26())
     let loginWithLabel = UILabel(text: "Login with")
     let orLabel = UILabel(text: "or")
@@ -26,8 +28,8 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    let emailTextField = OneLineTextField()
-    let passwordTextField = OneLineTextField()
+    let emailTextField = OneLineTextField(font: .avenir20())
+    let passwordTextField = OneLineTextField(font: .avenir20())
 
     let emailStack = UIStackView(axis: .vertical, spacing: 0)
     let passwordStack = UIStackView(axis: .vertical, spacing: 0)
@@ -40,6 +42,8 @@ class LoginViewController: UIViewController {
         googleButton.customizedGoogleButton()
         setupHierarchy()
         setupLayout()
+        configureTargetsForButtons()
+        customizeElements()
     }
 
     private func setupHierarchy() {
@@ -77,9 +81,63 @@ class LoginViewController: UIViewController {
         }
 
         bottomStackView.snp.makeConstraints { make in
-            make.centerY.equalTo(view.snp.centerY).multipliedBy(1.7)
+            make.centerY.equalTo(view.snp.centerY).multipliedBy(1.75)
             make.leading.equalTo(view.snp.leading).offset(40)
         }
+    }
+
+    private func customizeElements() {
+        passwordTextField.isSecureTextEntry = true
+    }
+
+    private func configureTargetsForButtons() {
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+    }
+}
+
+// MARK: - Actions for Buttons Extension
+
+extension LoginViewController {
+
+    @objc private func loginButtonPressed() {
+        AuthenticationService.shared.login(email: emailTextField.text,
+                                           password: passwordTextField.text) { result in
+            switch result {
+            case .success(let user):
+                self.showAlert(withTitle: "Success", andMessage: "User is login") {
+                    FirestoreService.shared.getUserData(user: user) { result in
+                        switch result {
+                        case .success(let mUser):
+                            self.present(MainTabBarController(), animated: true)
+                        case .failure(let error):
+                            self.present(RegistrationViewController(currentUser: user), animated: true)
+                         }
+                    }
+                }
+                print(user.email ?? "Not found")
+            case .failure(let error):
+                self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
+            }
+        }
+    }
+
+    @objc private func signUpButtonPressed() {
+        dismiss(animated: true) {
+            self.delegate?.toSignUpVC()
+        }
+    }
+}
+
+extension LoginViewController {
+
+    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
+            completion()
+        }
+        alert.addAction(actionOK)
+        present(alert, animated: true)
     }
 
 }

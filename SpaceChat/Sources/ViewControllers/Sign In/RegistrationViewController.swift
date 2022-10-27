@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
+
+    private let currentUser: User
 
     let addPhotoView = AddPhotoView()
 
@@ -28,11 +31,21 @@ class RegistrationViewController: UIViewController {
     let sexSegmentedStack = UIStackView(axis: .vertical, spacing: 10)
     let mainStackView = UIStackView(axis: .vertical, spacing: 40)
 
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
+        configureTargetsForButtons()
     }
 
     private func setupHierarchy() {
@@ -72,5 +85,47 @@ class RegistrationViewController: UIViewController {
             make.leading.equalTo(view.snp.leading).offset(40)
             make.trailing.equalTo(view.snp.trailing).offset(-40)
         }
+    }
+
+    private func configureTargetsForButtons() {
+        goToChatsButton.addTarget(self, action: #selector(goToChatsButtonPressed), for: .touchUpInside)
+    }
+}
+
+extension RegistrationViewController {
+
+    @objc func goToChatsButtonPressed() {
+        if let email = currentUser.email {
+            FirestoreService.shared.saveProfileWith(
+                id: currentUser.uid,
+                email: email,
+                username: fullNameTextField.text,
+                avatarImageString: nil,
+                description: aboutMeTextField.text,
+                sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { result in
+                    switch result {
+                    case .success(let mUser):
+                        self.showAlert(withTitle: "Success", andMessage: "Let's write your first message") {
+                            self.present(MainTabBarController(), animated: true)
+                        }
+                        print(mUser.username)
+                    case .failure(let error):
+                        self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
+                    }
+                }
+        }
+    }
+
+}
+
+extension RegistrationViewController {
+
+    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
+            completion()
+        }
+        alert.addAction(actionOK)
+        present(alert, animated: true)
     }
 }
