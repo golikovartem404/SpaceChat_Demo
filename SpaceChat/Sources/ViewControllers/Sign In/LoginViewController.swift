@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol AuthenticationNavigtionDelegate: AnyObject {
+    func toLoginVC()
+    func toSignUpVC()
+}
+
 class LoginViewController: UIViewController {
+
+    weak var delegate: AuthenticationNavigtionDelegate?
 
     let welcomeLabel = UILabel(text: "Welcome back!", font: .avenir26())
     let loginWithLabel = UILabel(text: "Login with")
@@ -85,6 +92,7 @@ class LoginViewController: UIViewController {
 
     private func configureTargetsForButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     }
 }
 
@@ -97,20 +105,30 @@ extension LoginViewController {
                                            password: passwordTextField.text) { result in
             switch result {
             case .success(let user):
-                self.showAlert(withTitle: "Success", andMessage: "User is login!")
-                print(user.email)
+                self.showAlert(withTitle: "Success", andMessage: "User is login") {
+                    self.present(RegistrationViewController(), animated: true)
+                }
+                print(user.email ?? "Not found")
             case .failure(let error):
                 self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
             }
+        }
+    }
+
+    @objc private func signUpButtonPressed() {
+        dismiss(animated: true) {
+            self.delegate?.toSignUpVC()
         }
     }
 }
 
 extension LoginViewController {
 
-    func showAlert(withTitle title: String, andMessage message: String) {
+    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
+            completion()
+        }
         alert.addAction(actionOK)
         present(alert, animated: true)
     }

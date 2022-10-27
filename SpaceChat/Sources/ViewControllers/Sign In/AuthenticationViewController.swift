@@ -40,6 +40,8 @@ class AuthenticationViewController: UIViewController {
         setupHierachy()
         setupLayout()
         configureTargetsForButtons()
+        loginViewController.delegate = self
+        signUpViewController.delegate = self
     }
 
     // MARK: - Setups
@@ -80,13 +82,21 @@ class AuthenticationViewController: UIViewController {
 extension AuthenticationViewController {
 
     @objc private func emailButtonPressed() {
-        print(#function)
         present(signUpViewController, animated: true)
     }
 
     @objc private func loginButtonPressed() {
-        print(#function)
         present(loginViewController, animated: true)
     }
 
+}
+
+extension AuthenticationViewController: AuthenticationNavigtionDelegate {
+    func toLoginVC() {
+        present(loginViewController, animated: true)
+    }
+
+    func toSignUpVC() {
+        present(signUpViewController, animated: true)
+    }
 }

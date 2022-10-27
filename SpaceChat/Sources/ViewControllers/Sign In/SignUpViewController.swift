@@ -9,6 +9,8 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    weak var delegate: AuthenticationNavigtionDelegate?
+
     let welcomeLabel = UILabel(text: "Hello", font: .avenir26())
     let emailLabel = UILabel(text: "Email")
     let emailTextField = OneLineTextField(font: .avenir20())
@@ -75,7 +77,7 @@ class SignUpViewController: UIViewController {
         }
 
         bottomStackView.snp.makeConstraints { make in
-            make.centerY.equalTo(view.snp.centerY).multipliedBy(1.7)
+            make.centerY.equalTo(view.snp.centerY).multipliedBy(1.6)
             make.leading.equalTo(view.snp.leading).offset(40)
         }
     }
@@ -86,6 +88,7 @@ class SignUpViewController: UIViewController {
 
     private func configureTargetsForButtons() {
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
 }
 
@@ -99,23 +102,31 @@ extension SignUpViewController {
                                                   andConfirmPassword: confirmPasswordTextField.text) { result in
             switch result {
             case .success(let user):
-                self.showAlert(withTitle: "Success", andMessage: "User is register")
-                print(user.email!)
+                self.showAlert(withTitle: "Success", andMessage: "User is register") {
+                    self.present(RegistrationViewController(), animated: true)
+                }
+                print(user.email ?? "Not found")
             case .failure(let error):
                 self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
             }
         }
     }
 
+    @objc private func loginButtonPressed() {
+        dismiss(animated: true) {
+            self.delegate?.toLoginVC()
+        }
+    }
 }
 
 extension SignUpViewController {
 
-    func showAlert(withTitle title: String, andMessage message: String) {
+    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
+            completion()
+        }
         alert.addAction(actionOK)
         present(alert, animated: true)
     }
-
 }
