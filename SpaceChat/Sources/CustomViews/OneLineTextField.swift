@@ -18,11 +18,12 @@ class OneLineTextField: UITextField {
         let bottomView = UIView()
         bottomView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         bottomView.backgroundColor = .textFieldBorder()
-
         self.addSubview(bottomView)
 
         bottomView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(self)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+            make.bottom.equalTo(self.snp.bottom)
             make.height.equalTo(1)
         }
     }

@@ -10,6 +10,11 @@ import SnapKit
 
 class AuthenticationViewController: UIViewController {
 
+    // MARK: - Properties
+
+    let signUpViewController = SignUpViewController()
+    let loginViewController = LoginViewController()
+
     // MARK: - Outlets
 
     let logoImageView = UIImageView(image: UIImage(named: "logo"), contentMode: .scaleAspectFit)
@@ -34,6 +39,7 @@ class AuthenticationViewController: UIViewController {
         googleButton.customizedGoogleButton()
         setupHierachy()
         setupLayout()
+        configureTargetsForButtons()
     }
 
     // MARK: - Setups
@@ -50,7 +56,6 @@ class AuthenticationViewController: UIViewController {
     }
 
     func setupLayout() {
-
         logoImageView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.centerY.equalTo(view).multipliedBy(0.45)
@@ -62,6 +67,26 @@ class AuthenticationViewController: UIViewController {
             make.leading.equalTo(view.snp.leading).offset(40)
             make.trailing.equalTo(view.snp.trailing).offset(-40)
         }
-
     }
+
+    private func configureTargetsForButtons() {
+        emailButton.addTarget(self, action: #selector(emailButtonPressed), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+    }
+}
+
+// MARK: - Actions For Buttons Extension
+
+extension AuthenticationViewController {
+
+    @objc private func emailButtonPressed() {
+        print(#function)
+        present(signUpViewController, animated: true)
+    }
+
+    @objc private func loginButtonPressed() {
+        print(#function)
+        present(loginViewController, animated: true)
+    }
+
 }

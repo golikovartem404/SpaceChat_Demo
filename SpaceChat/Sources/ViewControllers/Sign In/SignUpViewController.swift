@@ -11,11 +11,11 @@ class SignUpViewController: UIViewController {
 
     let welcomeLabel = UILabel(text: "Hello", font: .avenir26())
     let emailLabel = UILabel(text: "Email")
-    let emailTextField = OneLineTextField()
+    let emailTextField = OneLineTextField(font: .avenir20())
     let passwordLabel = UILabel(text: "Password")
-    let passwordTextField = OneLineTextField()
+    let passwordTextField = OneLineTextField(font: .avenir20())
     let confirmPasswordLabel = UILabel(text: "Confirm password")
-    let confirmPasswordTextField = OneLineTextField()
+    let confirmPasswordTextField = OneLineTextField(font: .avenir20())
     let alreadyOnboardLabel = UILabel(text: "Already onboard?")
     let signUpButton = UIButton(title: "Sign Up", titleColor: .white, backgroundColor: .buttonBlack(), cornerRadius: 8)
     let loginButton: UIButton = {
@@ -36,6 +36,8 @@ class SignUpViewController: UIViewController {
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
+        configureTargetsForButtons()
+        customizeElements()
     }
 
     private func setupHierarchy() {
@@ -76,6 +78,44 @@ class SignUpViewController: UIViewController {
             make.centerY.equalTo(view.snp.centerY).multipliedBy(1.7)
             make.leading.equalTo(view.snp.leading).offset(40)
         }
+    }
+
+    private func customizeElements() {
+        passwordTextField.isSecureTextEntry = true
+    }
+
+    private func configureTargetsForButtons() {
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+    }
+}
+
+// MARK: - Actions for Buttons Extension
+
+extension SignUpViewController {
+
+    @objc private func signUpButtonPressed() {
+        AuthenticationService.shared.registration(withEmail: emailTextField.text,
+                                                  andPassword: passwordTextField.text,
+                                                  andConfirmPassword: confirmPasswordTextField.text) { result in
+            switch result {
+            case .success(let user):
+                self.showAlert(withTitle: "Success", andMessage: "User is register")
+                print(user.email!)
+            case .failure(let error):
+                self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
+            }
+        }
+    }
+
+}
+
+extension SignUpViewController {
+
+    func showAlert(withTitle title: String, andMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionOK = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(actionOK)
+        present(alert, animated: true)
     }
 
 }

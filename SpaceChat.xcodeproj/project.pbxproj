@@ -41,6 +41,9 @@
 		9C86B89E290995C60041729B /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89D290995C60041729B /* MChat.swift */; };
 		9C86B8A029099DF80041729B /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */; };
 		9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C86B8A129099F580041729B /* UIViewController + Ext.swift */; };
+		9C890DE7290A7820009D5CDF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DE6290A7820009D5CDF /* AuthenticationService.swift */; };
+		9C890DE9290A803A009D5CDF /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DE8290A803A009D5CDF /* ValidationService.swift */; };
+		9C890DEB290A82E3009D5CDF /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DEA290A82E3009D5CDF /* AuthErrors.swift */; };
 		9C9369FB2909CD8000470F86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FA2909CD8000470F86 /* ProfileViewController.swift */; };
 		9C9369FD2909D1C300470F86 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FC2909D1C300470F86 /* ProfileTextField.swift */; };
 		9C9369FF2909D61A00470F86 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FE2909D61A00470F86 /* UIView + Ext.swift */; };
@@ -86,6 +89,9 @@
 		9C86B89D290995C60041729B /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
 		9C86B89F29099DF80041729B /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		9C86B8A129099F580041729B /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		9C890DE6290A7820009D5CDF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		9C890DE8290A803A009D5CDF /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		9C890DEA290A82E3009D5CDF /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
 		9C9369FA2909CD8000470F86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9C9369FC2909D1C300470F86 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		9C9369FE2909D61A00470F86 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 		9C1E4F8F290869A5001BED50 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9C890DEC290A8592009D5CDF /* Helpers */,
+				9C890DE5290A77FE009D5CDF /* Services */,
 				9C86B899290995840041729B /* Models */,
 				9C86B8932909920D0041729B /* waitingChats.json */,
 				9C86B895290992820041729B /* users.json */,
@@ -282,6 +290,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9C890DE5290A77FE009D5CDF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9C890DE6290A7820009D5CDF /* AuthenticationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9C890DEC290A8592009D5CDF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9C890DEA290A82E3009D5CDF /* AuthErrors.swift */,
+				9C890DE8290A803A009D5CDF /* ValidationService.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -377,6 +402,7 @@
 				9C1E4F9A2908700E001BED50 /* UILabel + Ext.swift in Sources */,
 				9C31900729096CA200F8589A /* WaitingChatCollectionViewCell.swift in Sources */,
 				9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */,
+				9C890DE7290A7820009D5CDF /* AuthenticationService.swift in Sources */,
 				9C9369FB2909CD8000470F86 /* ProfileViewController.swift in Sources */,
 				9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */,
 				9C936A012909DAB000470F86 /* ChatRequestViewController.swift in Sources */,
@@ -394,8 +420,10 @@
 				9C1E4F7D29086621001BED50 /* SceneDelegate.swift in Sources */,
 				9C86B89B2909958D0041729B /* MUser.swift in Sources */,
 				9C31900A29096D9200F8589A /* CollectionCellProtocol.swift in Sources */,
+				9C890DE9290A803A009D5CDF /* ValidationService.swift in Sources */,
 				9C86B8A229099F580041729B /* UIViewController + Ext.swift in Sources */,
 				9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */,
+				9C890DEB290A82E3009D5CDF /* AuthErrors.swift in Sources */,
 				9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +570,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -569,6 +598,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
