@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
@@ -93,6 +95,7 @@ class LoginViewController: UIViewController {
     private func configureTargetsForButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -129,17 +132,33 @@ extension LoginViewController {
             self.delegate?.toSignUpVC()
         }
     }
-}
 
-extension LoginViewController {
-
-    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
-            completion()
+    @objc func googleButtonTapped() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let signInConfig = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            AuthenticationService.shared.googleLogin(user: user,
+                                                     error: error) { result in
+                switch result {
+                case .success(let user):
+                    FirestoreService.shared.getUserData(user: user) { result in
+                        switch result {
+                        case .success(let mUser):
+                                self.showAlert(withTitle: "Success", andMessage: "You are successfully login") {
+                                    let mainTabBar = MainTabBarController(currentUser: mUser)
+                                    mainTabBar.modalPresentationStyle = .fullScreen
+                                    self.present(mainTabBar, animated: true)
+                                }
+                        case .failure(_):
+                            self.showAlert(withTitle: "Success", andMessage: "You need to setup your profile") {
+                                self.present(RegistrationViewController(currentUser: user), animated: true)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+                }
+            }
         }
-        alert.addAction(actionOK)
-        present(alert, animated: true)
     }
-
 }

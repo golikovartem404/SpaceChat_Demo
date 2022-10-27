@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import GoogleSignIn
+import FirebaseAuth
+import Firebase
 
 class AuthenticationViewController: UIViewController {
 
@@ -74,6 +77,7 @@ class AuthenticationViewController: UIViewController {
     private func configureTargetsForButtons() {
         emailButton.addTarget(self, action: #selector(emailButtonPressed), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -87,6 +91,35 @@ extension AuthenticationViewController {
 
     @objc private func loginButtonPressed() {
         present(loginViewController, animated: true)
+    }
+
+    @objc func googleButtonTapped() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let signInConfig = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            AuthenticationService.shared.googleLogin(user: user,
+                                                     error: error) { result in
+                switch result {
+                case .success(let user):
+                    FirestoreService.shared.getUserData(user: user) { result in
+                        switch result {
+                        case .success(let mUser):
+                                self.showAlert(withTitle: "Success", andMessage: "You are already registered") {
+                                    let mainTabBar = MainTabBarController(currentUser: mUser)
+                                    mainTabBar.modalPresentationStyle = .fullScreen
+                                    self.present(mainTabBar, animated: true)
+                                }
+                        case .failure(_):
+                            self.showAlert(withTitle: "Success", andMessage: "You are already registered") {
+                                self.present(RegistrationViewController(currentUser: user), animated: true)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+                }
+            }
+        }
     }
 
 }

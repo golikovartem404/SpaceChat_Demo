@@ -34,6 +34,11 @@ class RegistrationViewController: UIViewController {
     init(currentUser: User) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
+        if let username = currentUser.displayName {
+            fullNameTextField.text = username
+        }
+
+        // To do set google image
     }
 
     required init?(coder: NSCoder) {
@@ -118,16 +123,4 @@ extension RegistrationViewController {
         }
     }
 
-}
-
-extension RegistrationViewController {
-
-    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
-            completion()
-        }
-        alert.addAction(actionOK)
-        present(alert, animated: true)
-    }
 }
