@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         configureTargetsForButtons()
+        customizeElements()
     }
 
     private func setupHierarchy() {
@@ -85,6 +86,10 @@ class LoginViewController: UIViewController {
         }
     }
 
+    private func customizeElements() {
+        passwordTextField.isSecureTextEntry = true
+    }
+
     private func configureTargetsForButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
@@ -101,7 +106,14 @@ extension LoginViewController {
             switch result {
             case .success(let user):
                 self.showAlert(withTitle: "Success", andMessage: "User is login") {
-//                    self.present(RegistrationViewController(currentUser: user), animated: true)
+                    FirestoreService.shared.getUserData(user: user) { result in
+                        switch result {
+                        case .success(let mUser):
+                            self.present(MainTabBarController(), animated: true)
+                        case .failure(let error):
+                            self.present(RegistrationViewController(currentUser: user), animated: true)
+                         }
+                    }
                 }
                 print(user.email ?? "Not found")
             case .failure(let error):

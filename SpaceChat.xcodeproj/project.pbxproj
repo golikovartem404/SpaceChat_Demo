@@ -14,6 +14,7 @@
 		9C14EDBE290AB0C9002E2C50 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDBD290AB0C9002E2C50 /* FirebaseFirestoreSwift */; };
 		9C14EDC0290AB0C9002E2C50 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDBF290AB0C9002E2C50 /* FirebaseStorage */; };
 		9C14EDC2290AB373002E2C50 /* SaveProfileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDC1290AB373002E2C50 /* SaveProfileErrors.swift */; };
+		9C14EDC4290AC2F1002E2C50 /* SceneDelegate + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDC3290AC2F1002E2C50 /* SceneDelegate + Ext.swift */; };
 		9C185F4329087EA700C7296B /* UIStackView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C185F4229087EA700C7296B /* UIStackView + Ext.swift */; };
 		9C185F472908854C00C7296B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C185F462908854C00C7296B /* SignUpViewController.swift */; };
 		9C1E4F7B29086621001BED50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E4F7A29086621001BED50 /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 		9C14EDB1290AAC90002E2C50 /* AuthenticationNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNavigationDelegate.swift; sourceTree = "<group>"; };
 		9C14EDB3290AAFFB002E2C50 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		9C14EDC1290AB373002E2C50 /* SaveProfileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveProfileErrors.swift; sourceTree = "<group>"; };
+		9C14EDC3290AC2F1002E2C50 /* SceneDelegate + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate + Ext.swift"; sourceTree = "<group>"; };
 		9C185F4229087EA700C7296B /* UIStackView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Ext.swift"; sourceTree = "<group>"; };
 		9C185F462908854C00C7296B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9C1E4F7729086621001BED50 /* SpaceChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,6 +243,7 @@
 				9C86B88F290991480041729B /* Bundle + Ext.swift */,
 				9C86B8A129099F580041729B /* UIViewController + Ext.swift */,
 				9C9369FE2909D61A00470F86 /* UIView + Ext.swift */,
+				9C14EDC3290AC2F1002E2C50 /* SceneDelegate + Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C86B89E290995C60041729B /* MChat.swift in Sources */,
+				9C14EDC4290AC2F1002E2C50 /* SceneDelegate + Ext.swift in Sources */,
 				9C318FED290938DD00F8589A /* SegmentedControl + Ext.swift in Sources */,
 				9C9369FF2909D61A00470F86 /* UIView + Ext.swift in Sources */,
 				9C86B890290991480041729B /* Bundle + Ext.swift in Sources */,

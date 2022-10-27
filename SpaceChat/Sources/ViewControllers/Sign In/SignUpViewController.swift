@@ -84,6 +84,7 @@ class SignUpViewController: UIViewController {
 
     private func customizeElements() {
         passwordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.isSecureTextEntry = true
     }
 
     private func configureTargetsForButtons() {

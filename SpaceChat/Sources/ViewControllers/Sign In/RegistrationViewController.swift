@@ -105,7 +105,9 @@ extension RegistrationViewController {
                 sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { result in
                     switch result {
                     case .success(let mUser):
-                        self.showAlert(withTitle: "Success", andMessage: "Let's write your first message")
+                        self.showAlert(withTitle: "Success", andMessage: "Let's write your first message") {
+                            self.present(MainTabBarController(), animated: true)
+                        }
                         print(mUser.username)
                     case .failure(let error):
                         self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
