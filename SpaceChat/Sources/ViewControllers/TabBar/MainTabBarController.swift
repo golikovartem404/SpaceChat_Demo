@@ -10,6 +10,17 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
+    private let currentUser: MUser
+
+    init(currentUser: MUser) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
@@ -19,8 +30,8 @@ class MainTabBarController: UITabBarController {
     }
 
     private func setupTabBar() {
-        let usersVC = UsersViewController()
-        let chatListVC = ChatListViewController()
+        let usersVC = UsersViewController(currentUser: currentUser)
+        let chatListVC = ChatListViewController(currentUser: currentUser)
         let boldConfig = UIImage.SymbolConfiguration(weight: .medium)
         guard let usersVCImage = UIImage(systemName: "person.2", withConfiguration: boldConfig), let chatListVCImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfig) else { return }
         viewControllers = [
