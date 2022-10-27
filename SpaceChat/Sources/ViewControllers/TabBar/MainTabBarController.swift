@@ -24,16 +24,19 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .tabBarTintColor()
-        tabBar.isTranslucent = false
     }
 
     private func setupTabBar() {
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .tabBarTintColor()
+        tabBar.isTranslucent = false
         let usersVC = UsersViewController(currentUser: currentUser)
         let chatListVC = ChatListViewController(currentUser: currentUser)
         let boldConfig = UIImage.SymbolConfiguration(weight: .medium)
-        guard let usersVCImage = UIImage(systemName: "person.2", withConfiguration: boldConfig), let chatListVCImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfig) else { return }
+        guard
+            let usersVCImage = UIImage(systemName: "person.2", withConfiguration: boldConfig),
+            let chatListVCImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfig)
+        else { return }
         viewControllers = [
             generateNavigationController(rootVC: usersVC,
                                          title: "Users",

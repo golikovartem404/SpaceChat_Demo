@@ -6,20 +6,44 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
     weak var delegate: AuthenticationNavigtionDelegate?
 
-    let welcomeLabel = UILabel(text: "Welcome back!", font: .avenir26())
-    let loginWithLabel = UILabel(text: "Login with")
-    let orLabel = UILabel(text: "or")
-    let emailLabel = UILabel(text: "Email")
-    let passwordLabel = UILabel(text: "Password")
-    let needAccountLabel = UILabel(text: "Need an account?")
+    let welcomeLabel = UILabel(
+        text: "Welcome back!",
+        font: .avenir26()
+    )
+    let loginWithLabel = UILabel(
+        text: "Login with"
+    )
+    let orLabel = UILabel(
+        text: "or"
+    )
+    let emailLabel = UILabel(
+        text: "Email"
+    )
+    let passwordLabel = UILabel(
+        text: "Password"
+    )
+    let needAccountLabel = UILabel(
+        text: "Need an account?"
+    )
 
-    let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
-    let loginButton = UIButton(title: "Login", titleColor: .white, backgroundColor: .buttonBlack())
+    let googleButton = UIButton(
+        title: "Google",
+        titleColor: .black,
+        backgroundColor: .white,
+        isShadow: true
+    )
+    let loginButton = UIButton(
+        title: "Login",
+        titleColor: .white,
+        backgroundColor: .buttonBlack()
+    )
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
@@ -28,13 +52,29 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    let emailTextField = OneLineTextField(font: .avenir20())
-    let passwordTextField = OneLineTextField(font: .avenir20())
+    let emailTextField = OneLineTextField(
+        font: .avenir20()
+    )
+    let passwordTextField = OneLineTextField(
+        font: .avenir20()
+    )
 
-    let emailStack = UIStackView(axis: .vertical, spacing: 0)
-    let passwordStack = UIStackView(axis: .vertical, spacing: 0)
-    let mainStackView = UIStackView(axis: .vertical, spacing: 40)
-    let bottomStackView = UIStackView(axis: .horizontal, spacing: 15)
+    let emailStack = UIStackView(
+        axis: .vertical,
+        spacing: 0
+    )
+    let passwordStack = UIStackView(
+        axis: .vertical,
+        spacing: 0
+    )
+    let mainStackView = UIStackView(
+        axis: .vertical,
+        spacing: 40
+    )
+    let bottomStackView = UIStackView(
+        axis: .horizontal,
+        spacing: 15
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +88,10 @@ class LoginViewController: UIViewController {
 
     private func setupHierarchy() {
         view.addSubview(welcomeLabel)
-        let loginWithView = ButtonView(label: loginWithLabel, button: googleButton)
+        let loginWithView = ButtonView(
+            label: loginWithLabel,
+            button: googleButton
+        )
         emailStack.addArrangedSubview(emailLabel)
         emailStack.addArrangedSubview(emailTextField)
         passwordStack.addArrangedSubview(passwordLabel)
@@ -93,6 +136,7 @@ class LoginViewController: UIViewController {
     private func configureTargetsForButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
     }
 }
 
@@ -101,11 +145,16 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
 
     @objc private func loginButtonPressed() {
-        AuthenticationService.shared.login(email: emailTextField.text,
-                                           password: passwordTextField.text) { result in
+        AuthenticationService.shared.login(
+            email: emailTextField.text,
+            password: passwordTextField.text
+        ) { result in
             switch result {
             case .success(let user):
-                self.showAlert(withTitle: "Success", andMessage: "User is login") {
+                self.showAlert(
+                    withTitle: "Success",
+                    andMessage: "User is login"
+                ) {
                     FirestoreService.shared.getUserData(user: user) { result in
                         switch result {
                         case .success(let mUser):
@@ -119,7 +168,10 @@ extension LoginViewController {
                 }
                 print(user.email ?? "Not found")
             case .failure(let error):
-                self.showAlert(withTitle: "Failure", andMessage: error.localizedDescription)
+                self.showAlert(
+                    withTitle: "Failure",
+                    andMessage: error.localizedDescription
+                )
             }
         }
     }
@@ -129,17 +181,49 @@ extension LoginViewController {
             self.delegate?.toSignUpVC()
         }
     }
-}
 
-extension LoginViewController {
-
-    func showAlert(withTitle title: String, andMessage message: String, completion: @escaping () -> () = { }) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOK = UIAlertAction(title: "Ok", style: .default) { _ in
-            completion()
+    @objc func googleButtonTapped() {
+        guard
+            let clientID = FirebaseApp.app()?.options.clientID
+        else {
+            return
         }
-        alert.addAction(actionOK)
-        present(alert, animated: true)
+        let signInConfig = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(
+            with: signInConfig,
+            presenting: self
+        ) { user, error in
+            AuthenticationService.shared.googleLogin(user: user,
+                                                     error: error) { result in
+                switch result {
+                case .success(let user):
+                    FirestoreService.shared.getUserData(user: user) { result in
+                        switch result {
+                        case .success(let mUser):
+                                self.showAlert(
+                                    withTitle: "Success",
+                                    andMessage: "Successfully login!"
+                                ) {
+                                    let mainTabBar = MainTabBarController(currentUser: mUser)
+                                    mainTabBar.modalPresentationStyle = .fullScreen
+                                    self.present(mainTabBar, animated: true)
+                                }
+                        case .failure(_):
+                            self.showAlert(
+                                withTitle: "Success",
+                                andMessage: "Please setup your profile!"
+                            ) {
+                                self.present(RegistrationViewController(currentUser: user), animated: true)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    self.showAlert(
+                        withTitle: "Error",
+                        andMessage: error.localizedDescription
+                    )
+                }
+            }
+        }
     }
-
 }
