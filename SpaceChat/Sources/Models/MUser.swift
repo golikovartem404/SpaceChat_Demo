@@ -9,9 +9,22 @@ import Foundation
 
 struct MUser: Hashable, Decodable {
 
+    var email: String
+    var description: String
+    var sex: String
     var username: String
     var avatarStringURL: String
-    var id: Int
+    var id: String
+
+    var representation: [String: Any] {
+        var dict = ["uid": id]
+        dict["email"] = self.email
+        dict["username"] = self.username
+        dict["description"] = self.description
+        dict["sex"] = self.sex
+        dict["avatarStringURL"] = self.avatarStringURL
+        return dict
+    }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

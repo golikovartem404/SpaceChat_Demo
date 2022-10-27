@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol AuthenticationNavigtionDelegate: AnyObject {
-    func toLoginVC()
-    func toSignUpVC()
-}
-
 class LoginViewController: UIViewController {
 
     weak var delegate: AuthenticationNavigtionDelegate?
@@ -106,7 +101,7 @@ extension LoginViewController {
             switch result {
             case .success(let user):
                 self.showAlert(withTitle: "Success", andMessage: "User is login") {
-                    self.present(RegistrationViewController(), animated: true)
+//                    self.present(RegistrationViewController(currentUser: user), animated: true)
                 }
                 print(user.email ?? "Not found")
             case .failure(let error):
