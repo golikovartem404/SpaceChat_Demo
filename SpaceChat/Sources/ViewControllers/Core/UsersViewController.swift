@@ -66,12 +66,21 @@ class UsersViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
+
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = .mainWhite()
+        navigationController?.navigationBar.tintColor = .black
+
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Log Out",
             style: .plain,
@@ -234,7 +243,7 @@ extension UsersViewController {
             sectionHeader.cofigure(
                 withText: section.description(usersCount: items?.count ?? 0),
                 font: .systemFont(ofSize: 36, weight: .light),
-                textColor: .label
+                textColor: .black
             )
             return sectionHeader
         }
