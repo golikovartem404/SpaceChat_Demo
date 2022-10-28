@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		9C14EDB2290AAC90002E2C50 /* AuthenticationNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDB1290AAC90002E2C50 /* AuthenticationNavigationDelegate.swift */; };
 		9C14EDB4290AAFFB002E2C50 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDB3290AAFFB002E2C50 /* FirestoreService.swift */; };
-		9C14EDBA290AB0C9002E2C50 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDB9290AB0C9002E2C50 /* FirebaseAuth */; };
-		9C14EDBC290AB0C9002E2C50 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDBB290AB0C9002E2C50 /* FirebaseFirestore */; };
-		9C14EDBE290AB0C9002E2C50 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDBD290AB0C9002E2C50 /* FirebaseFirestoreSwift */; };
-		9C14EDC0290AB0C9002E2C50 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C14EDBF290AB0C9002E2C50 /* FirebaseStorage */; };
 		9C14EDC2290AB373002E2C50 /* SaveProfileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDC1290AB373002E2C50 /* SaveProfileErrors.swift */; };
 		9C14EDC4290AC2F1002E2C50 /* SceneDelegate + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C14EDC3290AC2F1002E2C50 /* SceneDelegate + Ext.swift */; };
 		9C185F4329087EA700C7296B /* UIStackView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C185F4229087EA700C7296B /* UIStackView + Ext.swift */; };
@@ -27,8 +23,6 @@
 		9C1E4F9829086DF5001BED50 /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E4F9729086DF5001BED50 /* UIColor + Ext.swift */; };
 		9C1E4F9A2908700E001BED50 /* UILabel + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E4F992908700E001BED50 /* UILabel + Ext.swift */; };
 		9C1E4F9C290870B1001BED50 /* UIImageView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E4F9B290870B1001BED50 /* UIImageView + Ext.swift */; };
-		9C1E4FA029087706001BED50 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C1E4F9F29087706001BED50 /* SnapKit */; };
-		9C29C7DE290AE75D000F6741 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C29C7DD290AE75D000F6741 /* GoogleSignIn */; };
 		9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE42909260C00F8589A /* OneLineTextField.swift */; };
 		9C318FE729092C1A00F8589A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE629092C1A00F8589A /* LoginViewController.swift */; };
 		9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C318FE8290931BA00F8589A /* RegistrationViewController.swift */; };
@@ -53,6 +47,11 @@
 		9C890DE7290A7820009D5CDF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DE6290A7820009D5CDF /* AuthenticationService.swift */; };
 		9C890DE9290A803A009D5CDF /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DE8290A803A009D5CDF /* ValidationService.swift */; };
 		9C890DEB290A82E3009D5CDF /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C890DEA290A82E3009D5CDF /* AuthErrors.swift */; };
+		9C8FCE06290BE0A100859CFE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8FCE05290BE0A100859CFE /* FirebaseAuth */; };
+		9C8FCE08290BE0A100859CFE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8FCE07290BE0A100859CFE /* FirebaseFirestore */; };
+		9C8FCE0A290BE0A100859CFE /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8FCE09290BE0A100859CFE /* FirebaseStorage */; };
+		9C8FCE0D290BE19000859CFE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8FCE0C290BE19000859CFE /* SnapKit */; };
+		9C8FCE10290BE1CC00859CFE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C8FCE0F290BE1CC00859CFE /* GoogleSignIn */; };
 		9C9369FB2909CD8000470F86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FA2909CD8000470F86 /* ProfileViewController.swift */; };
 		9C9369FD2909D1C300470F86 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FC2909D1C300470F86 /* ProfileTextField.swift */; };
 		9C9369FF2909D61A00470F86 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FE2909D61A00470F86 /* UIView + Ext.swift */; };
@@ -117,12 +116,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C1E4FA029087706001BED50 /* SnapKit in Frameworks */,
-				9C14EDBA290AB0C9002E2C50 /* FirebaseAuth in Frameworks */,
-				9C14EDBC290AB0C9002E2C50 /* FirebaseFirestore in Frameworks */,
-				9C14EDC0290AB0C9002E2C50 /* FirebaseStorage in Frameworks */,
-				9C14EDBE290AB0C9002E2C50 /* FirebaseFirestoreSwift in Frameworks */,
-				9C29C7DE290AE75D000F6741 /* GoogleSignIn in Frameworks */,
+				9C8FCE10290BE1CC00859CFE /* GoogleSignIn in Frameworks */,
+				9C8FCE06290BE0A100859CFE /* FirebaseAuth in Frameworks */,
+				9C8FCE0D290BE19000859CFE /* SnapKit in Frameworks */,
+				9C8FCE08290BE0A100859CFE /* FirebaseFirestore in Frameworks */,
+				9C8FCE0A290BE0A100859CFE /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,12 +342,11 @@
 			);
 			name = SpaceChat;
 			packageProductDependencies = (
-				9C1E4F9F29087706001BED50 /* SnapKit */,
-				9C14EDB9290AB0C9002E2C50 /* FirebaseAuth */,
-				9C14EDBB290AB0C9002E2C50 /* FirebaseFirestore */,
-				9C14EDBD290AB0C9002E2C50 /* FirebaseFirestoreSwift */,
-				9C14EDBF290AB0C9002E2C50 /* FirebaseStorage */,
-				9C29C7DD290AE75D000F6741 /* GoogleSignIn */,
+				9C8FCE05290BE0A100859CFE /* FirebaseAuth */,
+				9C8FCE07290BE0A100859CFE /* FirebaseFirestore */,
+				9C8FCE09290BE0A100859CFE /* FirebaseStorage */,
+				9C8FCE0C290BE19000859CFE /* SnapKit */,
+				9C8FCE0F290BE1CC00859CFE /* GoogleSignIn */,
 			);
 			productName = SpaceChat;
 			productReference = 9C1E4F7729086621001BED50 /* SpaceChat.app */;
@@ -380,9 +377,9 @@
 			);
 			mainGroup = 9C1E4F6E29086621001BED50;
 			packageReferences = (
-				9C1E4F9E29087706001BED50 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				9C29C7DC290AE75D000F6741 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9C8FCE04290BE0A100859CFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9C8FCE0B290BE19000859CFE /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9C8FCE0E290BE1CC00859CFE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 9C1E4F7829086621001BED50 /* Products */;
 			projectDirPath = "";
@@ -665,7 +662,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		9C8FCE04290BE0A100859CFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -673,15 +670,15 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		9C1E4F9E29087706001BED50 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		9C8FCE0B290BE19000859CFE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
-		9C29C7DC290AE75D000F6741 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		9C8FCE0E290BE1CC00859CFE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
 			requirement = {
@@ -692,34 +689,29 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9C14EDB9290AB0C9002E2C50 /* FirebaseAuth */ = {
+		9C8FCE05290BE0A100859CFE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 9C8FCE04290BE0A100859CFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		9C14EDBB290AB0C9002E2C50 /* FirebaseFirestore */ = {
+		9C8FCE07290BE0A100859CFE /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 9C8FCE04290BE0A100859CFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		9C14EDBD290AB0C9002E2C50 /* FirebaseFirestoreSwift */ = {
+		9C8FCE09290BE0A100859CFE /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		9C14EDBF290AB0C9002E2C50 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9C14EDB8290AB0C9002E2C50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 9C8FCE04290BE0A100859CFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		9C1E4F9F29087706001BED50 /* SnapKit */ = {
+		9C8FCE0C290BE19000859CFE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C1E4F9E29087706001BED50 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 9C8FCE0B290BE19000859CFE /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		9C29C7DD290AE75D000F6741 /* GoogleSignIn */ = {
+		9C8FCE0F290BE1CC00859CFE /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9C29C7DC290AE75D000F6741 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = 9C8FCE0E290BE1CC00859CFE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
