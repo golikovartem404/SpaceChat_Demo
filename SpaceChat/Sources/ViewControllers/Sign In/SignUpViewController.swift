@@ -9,7 +9,11 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    // MARK: - Properties
+
     weak var delegate: AuthenticationNavigtionDelegate?
+
+    // MARK: - Outlets
 
     let welcomeLabel = UILabel(
         text: "Hello",
@@ -70,14 +74,19 @@ class SignUpViewController: UIViewController {
         spacing: 15
     )
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
-        configureTargetsForButtons()
+        configureTargets()
         customizeElements()
+        setupView()
     }
+
+    // MARK: - Setups
 
     private func setupHierarchy() {
         view.addSubview(welcomeLabel)
@@ -122,11 +131,20 @@ class SignUpViewController: UIViewController {
     private func customizeElements() {
         passwordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
     }
 
-    private func configureTargetsForButtons() {
+    private func configureTargets() {
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+    }
+
+    private func setupView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -156,5 +174,18 @@ extension SignUpViewController {
         dismiss(animated: true) {
             self.delegate?.toLoginVC()
         }
+    }
+
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+}
+
+// MARK: - TextField Extension
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -11,7 +11,11 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
+    // MARK: - Properties
+
     weak var delegate: AuthenticationNavigtionDelegate?
+
+    // MARK: - Outlets
 
     let welcomeLabel = UILabel(
         text: "Welcome back!",
@@ -76,15 +80,19 @@ class LoginViewController: UIViewController {
         spacing: 15
     )
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         googleButton.customizedGoogleButton()
         setupHierarchy()
         setupLayout()
-        configureTargetsForButtons()
+        configureTargets()
         customizeElements()
     }
+
+    // MARK: - Setups
 
     private func setupHierarchy() {
         view.addSubview(welcomeLabel)
@@ -131,9 +139,11 @@ class LoginViewController: UIViewController {
 
     private func customizeElements() {
         passwordTextField.isSecureTextEntry = true
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
-    private func configureTargetsForButtons() {
+    private func configureTargets() {
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
         googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
@@ -225,5 +235,14 @@ extension LoginViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - TextField Extension
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

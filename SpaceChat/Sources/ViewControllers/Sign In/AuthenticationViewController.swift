@@ -21,18 +21,21 @@ class AuthenticationViewController: UIViewController {
     // MARK: - Outlets
 
     let logoImageView = UIImageView(
-        image: UIImage(named: "logo"),
+        image: UIImage(named: "logo2"),
         contentMode: .scaleAspectFit
     )
 
     let googleLabel = UILabel(
-        text: "Get started with"
+        text: "Get started with",
+        font: .avenir20()
     )
     let emailLabel = UILabel(
-        text: "Or sign up with"
+        text: "Or sign up with",
+        font: .avenir20()
     )
     let alreadyOnboardLabel = UILabel(
-        text: "Already onboard?"
+        text: "Already onboard?",
+        font: .avenir20()
     )
 
     let googleButton = UIButton(
@@ -97,7 +100,7 @@ class AuthenticationViewController: UIViewController {
         logoImageView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.centerY.equalTo(view).multipliedBy(0.45)
-            make.width.equalTo(view).multipliedBy(0.85)
+            make.width.equalTo(view.snp.width).multipliedBy(0.9)
         }
 
         mainStackView.snp.makeConstraints { make in
@@ -176,7 +179,7 @@ extension AuthenticationViewController {
 
 }
 
-// MARK: - Delegate Extension
+// MARK: - AuthenticationNavigtionDelegate Extension
 
 extension AuthenticationViewController: AuthenticationNavigtionDelegate {
     func toLoginVC() {

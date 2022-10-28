@@ -14,6 +14,8 @@ class OneLineTextField: UITextField {
         self.init()
         self.font = font
         self.borderStyle = .none
+        self.textColor = .black
+        self.returnKeyType = .done
 
         let bottomView = UIView()
         bottomView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
