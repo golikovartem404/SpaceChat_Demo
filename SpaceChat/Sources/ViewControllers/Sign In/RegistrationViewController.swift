@@ -10,7 +10,11 @@ import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
 
+    // MARK: - Properties
+
     private let currentUser: User
+
+    // MARK: - Outlets
 
     let addPhotoView = AddPhotoView()
 
@@ -63,6 +67,8 @@ class RegistrationViewController: UIViewController {
         spacing: 40
     )
 
+    // MARK: - Lifecycle
+
     init(currentUser: User) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
@@ -82,8 +88,10 @@ class RegistrationViewController: UIViewController {
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
-        configureTargetsForButtons()
+        configureTargets()
     }
+
+    // MARK: - Setups
 
     private func setupHierarchy() {
         view.addSubview(setupLabel)
@@ -124,8 +132,13 @@ class RegistrationViewController: UIViewController {
         }
     }
 
-    private func configureTargetsForButtons() {
+    private func configureTargets() {
         goToChatsButton.addTarget(self, action: #selector(goToChatsButtonPressed), for: .touchUpInside)
+    }
+
+    private func customizeElements() {
+        fullNameTextField.delegate = self
+        aboutMeTextField.delegate = self
     }
 }
 
@@ -162,5 +175,14 @@ extension RegistrationViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - TextField Extension
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
