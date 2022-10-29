@@ -57,6 +57,8 @@
 		9C9369FF2909D61A00470F86 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9369FE2909D61A00470F86 /* UIView + Ext.swift */; };
 		9C936A012909DAB000470F86 /* ChatRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C936A002909DAB000470F86 /* ChatRequestViewController.swift */; };
 		9C936A032909E2F300470F86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C936A022909E2F300470F86 /* GoogleService-Info.plist */; };
+		9CBABD6B290D741E009DF8E4 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBABD6A290D741E009DF8E4 /* StorageService.swift */; };
+		9CBABD6D290D76BE009DF8E4 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBABD6C290D76BE009DF8E4 /* UIImage + Ext.swift */; };
 		9CE68FCE29087837000CD9D9 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68FCD29087837000CD9D9 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +110,8 @@
 		9C9369FE2909D61A00470F86 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		9C936A002909DAB000470F86 /* ChatRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestViewController.swift; sourceTree = "<group>"; };
 		9C936A022909E2F300470F86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9CBABD6A290D741E009DF8E4 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		9CBABD6C290D76BE009DF8E4 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		9CE68FCD29087837000CD9D9 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,6 +248,7 @@
 				9C86B8A129099F580041729B /* UIViewController + Ext.swift */,
 				9C9369FE2909D61A00470F86 /* UIView + Ext.swift */,
 				9C14EDC3290AC2F1002E2C50 /* SceneDelegate + Ext.swift */,
+				9CBABD6C290D76BE009DF8E4 /* UIImage + Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				9C890DE6290A7820009D5CDF /* AuthenticationService.swift */,
 				9C14EDB3290AAFFB002E2C50 /* FirestoreService.swift */,
 				9C890DE8290A803A009D5CDF /* ValidationService.swift */,
+				9CBABD6A290D741E009DF8E4 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				9C318FE9290931BA00F8589A /* RegistrationViewController.swift in Sources */,
 				9C936A012909DAB000470F86 /* ChatRequestViewController.swift in Sources */,
 				9C318FF129093E0B00F8589A /* MainTabBarController.swift in Sources */,
+				9CBABD6D290D76BE009DF8E4 /* UIImage + Ext.swift in Sources */,
 				9C318FF529093E6500F8589A /* UsersViewController.swift in Sources */,
 				9C1E4F9429086B89001BED50 /* UIButton + Ext.swift in Sources */,
 				9C1E4F9629086D5D001BED50 /* UIFont + Ext.swift in Sources */,
@@ -439,6 +446,7 @@
 				9C319002290961AE00F8589A /* ActiveChatCollectionViewCell.swift in Sources */,
 				9C318FEB2909332300F8589A /* AddPhotoView.swift in Sources */,
 				9C1E4F9829086DF5001BED50 /* UIColor + Ext.swift in Sources */,
+				9CBABD6B290D741E009DF8E4 /* StorageService.swift in Sources */,
 				9C1E4F7B29086621001BED50 /* AppDelegate.swift in Sources */,
 				9C318FE52909260C00F8589A /* OneLineTextField.swift in Sources */,
 				9C185F4329087EA700C7296B /* UIStackView + Ext.swift in Sources */,
