@@ -10,7 +10,7 @@ import UIKit
 
 class AddPhotoView: UIView {
 
-    private lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "photoIcon")
         imageView.contentMode = .scaleAspectFill
@@ -20,7 +20,7 @@ class AddPhotoView: UIView {
         return imageView
     }()
 
-    private lazy var plusButton: UIButton = {
+    lazy var plusButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(named: "plus")
         button.setImage(image, for: .normal)

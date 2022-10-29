@@ -134,6 +134,7 @@ class RegistrationViewController: UIViewController {
 
     private func configureTargets() {
         goToChatsButton.addTarget(self, action: #selector(goToChatsButtonPressed), for: .touchUpInside)
+        addPhotoView.plusButton.addTarget(self, action: #selector(addPhotoButtonPressed), for: .touchUpInside)
     }
 
     private func customizeElements() {
@@ -152,7 +153,7 @@ extension RegistrationViewController {
                 id: currentUser.uid,
                 email: email,
                 username: fullNameTextField.text,
-                avatarImageString: nil,
+                avatarImage: addPhotoView.imageView.image,
                 description: aboutMeTextField.text,
                 sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)
             ) { result in
@@ -176,6 +177,13 @@ extension RegistrationViewController {
             }
         }
     }
+
+    @objc func addPhotoButtonPressed() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
+    }
 }
 
 // MARK: - TextField Extension
@@ -184,5 +192,14 @@ extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+
+extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        addPhotoView.imageView.image = image
     }
 }
