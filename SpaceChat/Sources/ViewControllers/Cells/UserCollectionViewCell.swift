@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
 
@@ -13,7 +14,8 @@ class UserCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
 
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .white
+        imageView.image = UIImage(named: "photoIcon")
         return imageView
     }()
     let usernameLabel = UILabel(
@@ -75,7 +77,13 @@ class UserCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
 
     func configure<U>(with value: U) where U : Hashable {
         guard let user: MUser = value as? MUser else { return }
-        imageView.image = UIImage(named: user.avatarStringURL)
         usernameLabel.text = user.username
+        guard let url = URL(string: user.avatarStringURL) else { return }
+        imageView.sd_setImage(with: url, completed: nil)
+    }
+
+    override func prepareForReuse() {
+        imageView.image = nil
+        usernameLabel.text = nil
     }
 }

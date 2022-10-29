@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
 
 class RegistrationViewController: UIViewController {
 
@@ -75,8 +76,9 @@ class RegistrationViewController: UIViewController {
         if let username = currentUser.displayName {
             fullNameTextField.text = username
         }
-
-        // To do set google image
+        if let photoURL = currentUser.photoURL {
+            addPhotoView.imageView.sd_setImage(with: photoURL, completed: nil)
+        }
     }
 
     required init?(coder: NSCoder) {
