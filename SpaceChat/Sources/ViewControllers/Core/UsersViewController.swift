@@ -7,12 +7,13 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class UsersViewController: UIViewController {
 
-//    let users = Bundle.main.decode([MUser].self, from: "users.json")
     private let currentUser: MUser
-    let users = [MUser]()
+    private var usersListener: ListenerRegistration?
+    var users = [MUser]()
     var dataSource: UICollectionViewDiffableDataSource<Section, MUser>?
 
     enum Section: Int, CaseIterable {
@@ -30,6 +31,10 @@ class UsersViewController: UIViewController {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
         title = currentUser.username
+    }
+
+    deinit {
+        usersListener?.remove()
     }
 
     required init?(coder: NSCoder) {
@@ -62,7 +67,15 @@ class UsersViewController: UIViewController {
         setupLayout()
         setupNavigationBar()
         createDataSource()
-        reloadData(with: nil)
+        usersListener = ListenerService.shared.usersObserve(users: users) { result in
+            switch result {
+            case .success(let users):
+                self.users = users
+                self.reloadData(with: nil)
+            case .failure(let error):
+                self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+            }
+        }
     }
 
     private func setupNavigationBar() {
