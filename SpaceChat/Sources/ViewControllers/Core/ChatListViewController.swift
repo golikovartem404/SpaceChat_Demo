@@ -22,8 +22,8 @@ class ChatListViewController: UIViewController {
         }
     }
 
-    let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
-    let waitingChats = Bundle.main.decode([MChat].self, from: "waitingChats.json")
+    let activeChats = [MChat]()
+    let waitingChats = [MChat]()
     var dataSource: UICollectionViewDiffableDataSource<Section, MChat>?
 
     private let currentUser: MUser

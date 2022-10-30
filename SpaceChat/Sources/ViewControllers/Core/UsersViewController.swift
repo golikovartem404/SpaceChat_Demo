@@ -57,6 +57,7 @@ class UsersViewController: UIViewController {
             withReuseIdentifier: SectionHeader.identifier
         )
         collection.backgroundColor = .clear
+        collection.delegate = self
         return collection
     }()
 
@@ -274,10 +275,31 @@ extension UsersViewController {
 
 }
 
+// MARK: - UICollectionView Delegate Extension
+
+extension UsersViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let user = self.dataSource?.itemIdentifier(for: indexPath) else { return }
+        let profileViewController = ProfileViewController(user: user)
+        profileViewController.delegate = self
+        present(profileViewController, animated: true)
+    }
+
+}
+
 // MARK: - SearchBar Delegate
 
 extension UsersViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         reloadData(with: searchText)
     }
+}
+
+extension UsersViewController: ShowAlertDelegate {
+
+    func showAlert(title: String, message: String) {
+        self.showAlert(withTitle: title, andMessage: message)
+    }
+
 }

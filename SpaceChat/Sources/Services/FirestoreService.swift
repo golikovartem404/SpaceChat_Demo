@@ -19,6 +19,8 @@ class FirestoreService {
         return database.collection("users")
     }
 
+    var currentUser: MUser!
+
     func getUserData(user: User, completion: @escaping(Result<MUser, Error>) -> ()) {
         let documentReference = usersRef.document(user.uid)
         documentReference.getDocument { document, error in
@@ -27,6 +29,7 @@ class FirestoreService {
                     completion(.failure(ProfileSaveErrors.cannotUnwrapToMUser))
                     return
                 }
+                self.currentUser = mUser
                 completion(.success(mUser))
             } else {
                 completion(.failure(ProfileSaveErrors.cannotGetUserInfo))
@@ -63,6 +66,32 @@ class FirestoreService {
             case .failure(let error):
                 completion(.failure(error))
                 print("Problem during save profile data")
+            }
+        }
+    }
+
+    func createWaitingChat(message: String, reciever: MUser, completion: @escaping(Result<Void, Error>) -> ()) {
+        
+        let reference = database.collection(["users", reciever.id, "waitingChats"].joined(separator: "/"))
+        let messageReference = reference.document(self.currentUser.id).collection("messages")
+
+        let message = MMessage(user: currentUser, content: message)
+        let chat = MChat(friendUsername: currentUser.username,
+                         lastMessageContent: message.content,
+                         friendAvatarStringURL: currentUser.avatarStringURL,
+                         friendID: currentUser.id)
+        reference.document(currentUser.id).setData(chat.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+//            completion(.success(Void()))
+            messageReference.addDocument(data: message.representation) { error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(Void()))
             }
         }
     }

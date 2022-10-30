@@ -14,6 +14,7 @@ class ProfileTextField: UITextField {
         super.init(frame: frame)
         backgroundColor = .white
         placeholder = "Write something"
+        textColor = .black
         font = UIFont.systemFont(ofSize: 14)
         clearButtonMode = .whileEditing
         layer.cornerRadius = 18

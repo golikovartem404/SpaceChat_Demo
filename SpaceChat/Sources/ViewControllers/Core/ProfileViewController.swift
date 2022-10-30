@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileViewController: UIViewController {
+
+    private let user: MUser?
+    weak var delegate: ShowAlertDelegate?
 
     let containerView = UIView()
     let imageView = UIImageView(
@@ -23,6 +27,18 @@ class ProfileViewController: UIViewController {
         font: .systemFont(ofSize: 16, weight: .light)
     )
     let myTextField = ProfileTextField()
+
+    init(user: MUser) {
+        self.user = user
+        self.nameLabel.text = user.username
+        self.aboutMeLabel.text = user.description
+        self.imageView.sd_setImage(with: URL(string: user.avatarStringURL), completed: nil)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +98,19 @@ class ProfileViewController: UIViewController {
     }
 
     @objc private func sendMessage() {
-        print("Send")
+        guard let message = myTextField.text, message != "" else { return }
+        self.dismiss(animated: true) {
+            FirestoreService.shared.createWaitingChat(message: message, reciever: self.user!) { result in
+                switch result {
+                case .success():
+                    if let user = self.user {
+                        self.delegate?.showAlert(title: "Success", message: "Your message to \(user.username) is send!")
+                    }
+                case .failure(let error):
+                    self.delegate?.showAlert(title: "Error", message: error.localizedDescription)
+                }
+            }
+        }
     }
 
 }
