@@ -35,6 +35,8 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
         backgroundColor = .white
         setupHierarchy()
         setupLayout()
+        self.layer.cornerRadius = 4
+        self.clipsToBounds = true
     }
 
     required init?(coder: NSCoder) {
@@ -78,9 +80,9 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, SelfConfiguringCell {
 
     func configure<U>(with value: U) where U : Hashable {
         guard let chat: MChat = value as? MChat else { return }
-//        chatImageView.image = UIImage(named: chat.userImageString)
-//        friendName.text = chat.username
-//        lastMessage.text = chat.lastMessage
+        friendName.text = chat.friendUsername
+        lastMessage.text = chat.lastMessageContent
+        chatImageView.sd_setImage(with: URL(string: chat.friendAvatarStringURL))
     }
 
 }

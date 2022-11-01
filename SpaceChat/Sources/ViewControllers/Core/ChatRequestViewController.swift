@@ -9,6 +9,9 @@ import UIKit
 
 class ChatRequestViewController: UIViewController {
 
+    private var chat: MChat
+    weak var delegate: WaitingChatsNavigationDelegate?
+
     let containerView = UIView()
     let imageView = UIImageView(
         image: UIImage(named: "human7"),
@@ -43,12 +46,24 @@ class ChatRequestViewController: UIViewController {
         spacing: 7
     )
 
+    init(chat: MChat) {
+        self.chat = chat
+        nameLabel.text = chat.friendUsername
+        imageView.sd_setImage(with: URL(string: chat.friendAvatarStringURL))
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainWhite()
         setupHierarchy()
         setupLayout()
         customizeElements()
+        setupActionsForButtons()
     }
 
     override func viewWillLayoutSubviews() {
@@ -106,4 +121,24 @@ class ChatRequestViewController: UIViewController {
         buttonsStackView.distribution = .fillEqually
     }
 
+    private func setupActionsForButtons() {
+        acceptButton.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
+        denyButton.addTarget(self, action: #selector(denyButtonPressed), for: .touchUpInside)
+    }
+
+}
+
+extension ChatRequestViewController {
+
+    @objc private func denyButtonPressed() {
+        self.dismiss(animated: true) {
+            self.delegate?.removeWaitingChat(chat: self.chat)
+        }
+    }
+
+    @objc private func acceptButtonPressed() {
+        self.dismiss(animated: true) {
+            self.delegate?.changeToActive(chat: self.chat)
+        }
+    }
 }

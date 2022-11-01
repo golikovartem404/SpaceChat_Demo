@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 struct MMessage: Hashable {
 
@@ -23,8 +24,22 @@ struct MMessage: Hashable {
         messageID = nil
     }
 
+    init?(document: QueryDocumentSnapshot) {
+        let data = document.data()
+        guard let sendDate = data["created"] as? Timestamp else { return nil}
+        guard let senderID = data["senderID"] as? String else { return nil}
+        guard let senderUsername = data["senderUsername"] as? String else { return nil}
+        guard let content = data["content"] as? String else { return nil}
+
+        self.messageID = document.documentID
+        self.sendDate = sendDate.dateValue()
+        self.senderID = senderID
+        self.senderUsername = senderUsername
+        self.content = content
+    }
+
     var representation: [String: Any] {
-        var rep: [String: Any] = [
+        let rep: [String: Any] = [
             "created": sendDate,
             "senderID": senderID,
             "senderUsername": senderUsername,

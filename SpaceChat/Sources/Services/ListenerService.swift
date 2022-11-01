@@ -51,4 +51,60 @@ class ListenerService {
         return usersListener
     }
 
+    func waitingChatsObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
+        var chats = chats
+        let chatsReference = database.collection(["users", currentUserID, "waitingChats"].joined(separator: "/"))
+        let chatsListener = chatsReference.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else {
+                completion(.failure(error!))
+                print("Problem with snapshot")
+                return
+            }
+            snapshot.documentChanges.forEach { difference in
+                guard let chat = MChat(document: difference.document) else { return }
+                switch difference.type {
+                case .added:
+                    guard !chats.contains(chat) else { return }
+                    chats.append(chat)
+                case .modified:
+                    guard let index = chats.firstIndex(of: chat) else { return }
+                    chats[index] = chat
+                case .removed:
+                    guard let index = chats.firstIndex(of: chat) else { return }
+                    chats.remove(at: index)
+                }
+            }
+            completion(.success(chats))
+        }
+        return chatsListener
+    }
+
+    func activeChatsObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
+        var chats = chats
+        let chatsReference = database.collection(["users", currentUserID, "activeChats"].joined(separator: "/"))
+        let chatsListener = chatsReference.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else {
+                completion(.failure(error!))
+                print("Problem with snapshot")
+                return
+            }
+            snapshot.documentChanges.forEach { difference in
+                guard let chat = MChat(document: difference.document) else { return }
+                switch difference.type {
+                case .added:
+                    guard !chats.contains(chat) else { return }
+                    chats.append(chat)
+                case .modified:
+                    guard let index = chats.firstIndex(of: chat) else { return }
+                    chats[index] = chat
+                case .removed:
+                    guard let index = chats.firstIndex(of: chat) else { return }
+                    chats.remove(at: index)
+                }
+            }
+            completion(.success(chats))
+        }
+        return chatsListener
+    }
+
 }
