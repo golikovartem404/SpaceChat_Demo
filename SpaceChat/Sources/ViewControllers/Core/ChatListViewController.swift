@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ChatListViewController: UIViewController {
 
@@ -22,11 +23,14 @@ class ChatListViewController: UIViewController {
         }
     }
 
-    let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
-    let waitingChats = Bundle.main.decode([MChat].self, from: "waitingChats.json")
+    var activeChats = [MChat]()
+    var waitingChats = [MChat]()
     var dataSource: UICollectionViewDiffableDataSource<Section, MChat>?
 
     private let currentUser: MUser
+
+    private var waitingChatsListener: ListenerRegistration?
+    private var activeChatsListener: ListenerRegistration?
 
     init(currentUser: MUser) {
         self.currentUser = currentUser
@@ -36,6 +40,11 @@ class ChatListViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        waitingChatsListener?.remove()
+        activeChatsListener?.remove()
     }
     
     private lazy var chatCollection: UICollectionView = {
@@ -58,6 +67,7 @@ class ChatListViewController: UIViewController {
             withReuseIdentifier: SectionHeader.identifier
         )
 
+        collection.delegate = self
         collection.backgroundColor = .clear
         return collection
     }()
@@ -70,6 +80,29 @@ class ChatListViewController: UIViewController {
         setupNavigationBar()
         createDataSource()
         reloadData()
+        waitingChatsListener = ListenerService.shared.waitingChatsObserve(chats: waitingChats, completion: { result in
+            switch result {
+            case .success(let chats):
+                if self.waitingChats != [], self.waitingChats.count <= chats.count {
+                    let chatRequestView = ChatRequestViewController(chat: chats.last!)
+                    chatRequestView.delegate = self
+                    self.present(chatRequestView, animated: true)
+                }
+                self.waitingChats = chats
+                self.reloadData()
+            case .failure(let error):
+                self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+            }
+        })
+        activeChatsListener = ListenerService.shared.activeChatsObserve(chats: activeChats, completion: { result in
+            switch result {
+            case .success(let chats):
+                self.activeChats = chats
+                self.reloadData()
+            case .failure(let error):
+                self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+            }
+        })
     }
 
     private func setupNavigationBar() {
@@ -240,10 +273,54 @@ extension ChatListViewController {
 
 }
 
+extension ChatListViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let chat = self.dataSource?.itemIdentifier(for: indexPath) else { return }
+        guard let section = Section(rawValue: indexPath.section) else { return }
+        switch section {
+        case .waitingChats:
+            let chatRequestVC = ChatRequestViewController(chat: chat)
+            chatRequestVC.delegate = self
+            self.present(chatRequestVC, animated: true)
+        case .activeChats:
+            print(indexPath)
+        }
+    }
+
+}
+
 // MARK: - SearchBar Delegate
 
 extension ChatListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
+    }
+}
+
+// MARK: - WaitingChatsNavigationDelegate Extension
+
+extension ChatListViewController: WaitingChatsNavigationDelegate {
+
+    func removeWaitingChat(chat: MChat) {
+        FirestoreService.shared.deleteWaitingChat(chat: chat) { result in
+            switch result {
+            case .success():
+                self.showAlert(withTitle: "Success", andMessage: "Your chat with \(chat.friendUsername) was deleted")
+            case .failure(let error):
+                self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+            }
+        }
+    }
+
+    func changeToActive(chat: MChat) {
+        FirestoreService.shared.changeChatToActive(chat: chat) { result in
+            switch result {
+            case .success():
+                self.showAlert(withTitle: "Success", andMessage: "Have a nice chat with \(chat.friendUsername)!")
+            case .failure(let error):
+                self.showAlert(withTitle: "Error", andMessage: error.localizedDescription)
+            }
+        }
     }
 }
