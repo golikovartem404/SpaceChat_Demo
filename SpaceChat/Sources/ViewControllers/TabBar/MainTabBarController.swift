@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     private let currentUser: MUser
 
