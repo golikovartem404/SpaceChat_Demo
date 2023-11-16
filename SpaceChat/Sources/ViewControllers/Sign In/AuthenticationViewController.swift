@@ -11,7 +11,7 @@ import GoogleSignIn
 import FirebaseAuth
 import Firebase
 
-class AuthenticationViewController: UIViewController {
+final class AuthenticationViewController: UIViewController {
 
     // MARK: - Properties
 
